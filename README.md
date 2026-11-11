@@ -2,6 +2,8 @@
 
 http://m3u-iptv.github.io/iptv/index.html
 
+http://m3u-iptv.github.io/iptv/ultra.html
+
 
 ### M3U-IPTV M3U File Links 2026
 
