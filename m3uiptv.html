@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M3U IPTV CHANNELS GUIDE</title>
+<style>
+*{box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#0f0f0f;color:#fff;margin:0;padding:0}
+header{width:100%;background:#1f1f1f;padding:15px 0;text-align:center;font-size:24px;font-weight:bold;color:#e50914;position:sticky;top:0;z-index:20}
+.player-wrapper{width:90%;max-width:900px;margin:15px auto 5px;position:relative;overflow:hidden;border-radius:12px;background:#000;display:none}
+.player-wrapper.show{display:block}
+video{width:100%;aspect-ratio:16/9;background:#000;display:block}
+.video-controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:5px 0 10px}
+.video-controls button{background:#222;color:#fff;border:1px solid #444;padding:8px 14px;border-radius:20px;cursor:pointer}
+.video-controls button.active{background:#e50914}
+.epg-now{width:90%;max-width:900px;background:#1a1a1a;border-left:4px solid #e50914;border-radius:10px;padding:12px;margin:0 auto 10px;display:none}
+.epg-now .live{color:#ffcc00;font-size:15px;font-weight:bold}
+.epg-now .time{color:#aaa;font-size:12px}
+.guide-head{background:#1a1a1a;padding:22px 16px 0}
+.guide-head h1{font-size:42px;margin:0 0 10px;font-weight:800;letter-spacing:-1px}
+.guide-head h1 span{color:#e50914}
+.search-box{display:flex;align-items:center;border-bottom:1px solid #888;padding:8px 0;margin-bottom:15px}
+.search-box input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:18px}
+.search-box input::placeholder{color:#888}
+.timeline-bar{display:flex;justify-content:space-between;align-items:center;padding:0 0 10px}
+.timeline-bar .tab{font-size:18px;font-weight:bold;letter-spacing:1px;padding-bottom:8px;cursor:pointer;color:#aaa}
+.timeline-bar .tab.active{color:#fff;border-bottom:4px solid #ff5722}
+.date-row{display:flex;background:#7a7a7a;overflow:hidden}
+.date-left{width:115px;min-width:115px;background:#7a7a7a;display:flex;align-items:center;justify-content:center;gap:6px;font-size:20px;font-weight:600;padding:12px 0}
+.day-tabs{display:flex;gap:30px;align-items:center;padding:0 15px;overflow-x:auto;white-space:nowrap;flex:1}
+.day-tabs div{font-size:18px;font-weight:700;color:#ddd;padding:12px 0;cursor:pointer;white-space:nowrap}
+.day-tabs div.active{color:#fff;border-bottom:4px solid #ff5722}
+.time-header{display:flex;background:#555;position:sticky;top:0;z-index:5}
+.time-left{width:115px;min-width:115px;background:#555;display:flex;align-items:center;justify-content:center;font-size:20px}
+.time-scroll{display:flex;flex:1;overflow-x:auto}
+.time-cell{min-width:140px;text-align:center;padding:8px 0;font-size:14px;color:#fff;border-left:1px solid #777}
+.now-badge{background:#1db954;color:#fff;font-weight:bold;padding:4px 10px;border-radius:4px;font-size:14px;margin-left:10px;white-space:nowrap}
+.guide-wrap{display:flex;align-items:flex-start}
+.channel-col{width:115px;min-width:115px;background:#fff;color:#000}
+.ch-card{background:#fff;border-bottom:1px solid #eee;padding:12px 8px;min-height:88px;display:flex;flex-direction:column;justify-content:center;cursor:pointer}
+.ch-card.active{border-left:5px solid #e50914;background:#fff3f3}
+.ch-card img{width:75px;height:32px;object-fit:contain}
+.ch-card .num{color:#ff5722;font-weight:800;font-size:16px;margin-top:6px}
+.ch-card .cname{font-size:12px;color:#333;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prog-col{flex:1;overflow-x:auto;background:#444}
+.prog-row{display:flex;height:88px;border-bottom:1px solid #222;position:relative;min-width:1400px}
+.prog-block{min-width:140px;background:#666;color:#fff;padding:10px;border-right:3px solid #222;cursor:pointer;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+.prog-block.live{background:#1db954}
+.prog-block b{font-size:15px;line-height:1.2}
+.prog-block span{font-size:13px;color:#ddd;margin-top:4px}
+.now-line{position:absolute;top:0;bottom:0;width:3px;background:#1db954;z-index:4;pointer-events:none}
+#status{text-align:center;color:#aaa;padding:10px;font-size:13px}
+</style>
+</head>
+<body>
+<header>📺 M3U IPTV CHANNELS GUIDE</header>
+<div class="player-wrapper" id="playerWrap"><video id="tv-player" controls autoplay muted playsinline></video></div>
+<div class="video-controls" id="videoControls" style="display:none">
+<button onclick="setVideoSize('contain',this)" class="active">📐 Fit</button>
+<button onclick="setVideoSize('cover',this)">🖼️ Fill</button>
+<button onclick="setVideoSize('zoom',this)">🔍 Zoom</button>
+<button onclick="toggleSound()" id="soundBtn">🔇 Sound On Karo</button>
+<button onclick="closePlayer()">❌ Player Band Karo</button>
+</div>
+<div class="epg-now" id="epgNow"><div class="live" id="epgNowTitle">Channel Chuniye...</div><div class="time" id="epgNowTime"></div><div id="epgUpdated" style="font-size:11px;color:#888;margin-top:4px"></div></div>
+
+<div class="guide-head">
+<h1><span>M3U IPTV CHANNELS GUIDE</span><br>GUIDE</h1>
+<div class="search-box"><input id="searchInput" placeholder="Find by channel name... or number..." oninput="renderGuide()"><span>🔍</span></div>
+<div class="timeline-bar"><div class="tab active">TIMELINE</div><div style="font-size:22px;color:#ff5722">🔽</div></div>
+</div>
+<div class="date-row"><div class="date-left">Today <span style="color:#ff5722">▼</span></div><div class="day-tabs" id="dayTabs"><div class="active" onclick="setDay('all',this)">ALL DAY</div><div onclick="setDay('morning',this)">MORNING</div><div onclick="setDay('afternoon',this)">AFTERNOON</div><div onclick="setDay('evening',this)">EVENING</div><div onclick="setDay('night',this)">NIGHT</div></div></div>
+<div class="time-header"><div class="time-left">◀</div><div class="time-scroll" id="timeHeader"></div></div>
+<p id="status">Guide Loading... ⏳</p>
+<div class="guide-wrap"><div class="channel-col" id="channelCol"></div><div class="prog-col" id="progCol"></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script>
+let channelsData=[], hls=null, video=document.getElementById('tv-player'), currentChannel=null;
+let M3U_URL='https://m3u-iptv.github.io/iptv/index.m3u';
+// ✅ AAPKA EPG LINK - Yahi Wala Chalega Sir, Koi Dusra Nahi!
+let EPG_URLS=[
+ 'https://raw.githubusercontent.com/m3u-iptv/live/main/epg.xml.gz',
+ 'https://cdn.jsdelivr.net/gh/m3u-iptv/live@main/epg.xml.gz'
+];
+let PROXIES=['https://corsproxy.io/?url=','https://api.allorigins.win/raw?url=','https://api.codetabs.com/v1/proxy?quest='];
+let epgData={}, epgByName={}, activeDay='all', searchText='';
+let AUTO_START_NUMBER = 1;
+let lastEPGUpdate=null, lastEPGDate=new Date().toDateString();
+
+function setVideoSize(mode,btn){ video.style.objectFit=mode=='zoom'?'cover':mode; video.style.transform=mode=='zoom'?'scale(1.25)':'scale(1)'; document.querySelectorAll('.video-controls button').forEach(b=>{ if(b.textContent.includes('Fit')||b.textContent.includes('Fill')||b.textContent.includes('Zoom')) b.classList.remove('active'); }); if(btn) btn.classList.add('active'); }
+function toggleSound(){ video.muted=false; video.volume=1; document.getElementById('soundBtn').innerText='🔊 Sound On Hai'; video.play().catch(()=>{}); }
+function closePlayer(){ document.getElementById('playerWrap').classList.remove('show'); document.getElementById('videoControls').style.display='none'; document.getElementById('epgNow').style.display='none'; if(hls){try{hls.destroy();}catch(e){}} video.pause(); }
+function setDay(d,el){ activeDay=d; document.querySelectorAll('#dayTabs div').forEach(b=>b.classList.remove('active')); el.classList.add('active'); renderGuide(); }
+function cleanName(s){ return (s||'').toLowerCase().replace(/\(.*?\)/g,'').replace(/\{.*?\}/g,'').replace(/hd|fhd|4k|1080p|720p|576p|sd|live|tv/g,'').replace(/[^a-z0-9]/g,'').trim(); }
+function parseEPGTime(s){ if(!s) return new Date(); if(s.includes('T')) return new Date(s); try{ let y=+s.substr(0,4), mo=+s.substr(4,2)-1, d=+s.substr(6,2), h=+s.substr(8,2), mi=+s.substr(10,2); let tz=s.substr(15,5)||'+0000'; let date=new Date(Date.UTC(y,mo,d,h,mi)); if(tz.length==5){ let sign=tz[0]==='-'?-1:1; let th=+tz.substr(1,2), tm=+tz.substr(3,2); date=new Date(date.getTime()-sign*(th*60+tm)*60000); } return date; }catch(e){ return new Date(); } }
+
+// ✅ GZ WALA EPG KHOLNE WALA SPECIAL CODE - Yahi Pehle Missing Tha Sir!
+async function ungzipBuffer(buf){
+  // Pehle check karo - kya ye sach me GZ hai? (1f 8b)
+  let bytes = new Uint8Array(buf);
+  let isGz = bytes.length>2 && bytes[0]==0x1f && bytes[1]==0x8b;
+  if(!isGz){
+    // GZ nahi hai, sidha text hai
+    return new TextDecoder().decode(buf);
+  }
+  try{
+    // Chrome / Android me GZ kholne wala code
+    let ds = new DecompressionStream('gzip');
+    let stream = new Blob([buf]).stream().pipeThrough(ds);
+    let txt = await new Response(stream).text();
+    return txt;
+  }catch(e){
+    // Agar phone purana hai to pako.js se kholo
+    return '';
+  }
+}
+async function fetchEPGOne(url){
+  // 1. Pehle Direct - bina proxy ke
+  try{
+    let r=await fetch(url);
+    if(r.ok){
+      let buf=await r.arrayBuffer();
+      let txt=await ungzipBuffer(buf);
+      if(txt.includes('<tv')||txt.includes('<programme')) return txt;
+      // Agar proxy ne pehle se khol diya ho to text me bhi check karo
+      if(txt.includes('programme')) return txt;
+    }
+  }catch(e){}
+  // 2. Proxy se - corsproxy.io GZ ko sahi se deta hai
+  for(let p of PROXIES){
+    try{
+      let r=await fetch(p+encodeURIComponent(url));
+      if(!r.ok) continue;
+      let buf=await r.arrayBuffer();
+      let txt=await ungzipBuffer(buf);
+      // Proxy kabhi kabhi text me GZ deta hai, usko bhi try karo
+      if(!txt.includes('<tv')){
+        try{ let t2=await r.clone().text(); if(t2.includes('<tv')) txt=t2; }catch(e){}
+      }
+      if(txt.includes('<tv')||txt.includes('<programme')) return txt;
+    }catch(e){}
+  }
+  return '';
+}
+
+async function loadEPG(){
+  document.getElementById('status').innerText='EPG Download Ho Raha Hai... .gz File Khul Rahi Hai, Thoda Time Lagega ⏳';
+  for(let url of EPG_URLS){
+    let xml=await fetchEPGOne(url);
+    if(!xml) continue;
+    try{
+      let doc=new DOMParser().parseFromString(xml,'text/xml');
+      let progs=doc.querySelectorAll('programme');
+      if(!progs.length) continue;
+      epgData={}; epgByName={}; let chMap={};
+      doc.querySelectorAll('channel').forEach(c=>{ let id=c.getAttribute('id'); let names=[...c.querySelectorAll('display-name')].map(n=>n.textContent); if(id) chMap[id]=names; });
+      progs.forEach(p=>{
+        let ch=p.getAttribute('channel'); let start=parseEPGTime(p.getAttribute('start')); let stop=parseEPGTime(p.getAttribute('stop'));
+        let title=p.querySelector('title')?.textContent||'Program'; let desc=p.querySelector('desc')?.textContent||'';
+        if(!epgData[ch]) epgData[ch]=[];
+        epgData[ch].push({start,stop,title,desc});
+        (chMap[ch]||[]).forEach(n=>{ let k=cleanName(n); if(!epgByName[k]) epgByName[k]=[]; epgByName[k].push({start,stop,title,desc}); });
+        let kid=cleanName(ch); if(!epgByName[kid]) epgByName[kid]=[]; epgByName[kid].push({start,stop,title,desc});
+      });
+      for(let k in epgData) epgData[k].sort((a,b)=>a.start-b.start);
+      for(let k in epgByName) epgByName[k].sort((a,b)=>a.start-b.start);
+      lastEPGUpdate=new Date();
+      let updEl=document.getElementById('epgUpdated');
+      if(updEl) updEl.innerText='🔄 EPG Auto Updated: '+lastEPGUpdate.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})+' | '+progs.length+' Programs | Aapka .gz Wala EPG Chal Gaya ✅';
+      updateEPGNow(); renderGuide(); return;
+    }catch(e){ console.log('EPG parse fail', e); }
+  }
+  document.getElementById('status').innerText='EPG Load Nahi Hua! Net Slow Hai, 1 Min Baad Refresh Karo!';
+}
+setInterval(()=>{ loadEPG(); }, 30*60*1000);
+setInterval(()=>{ if(new Date().toDateString()!==lastEPGDate){ lastEPGDate=new Date().toDateString(); loadEPG(); } updateEPGNow(); renderGuide(); }, 30*1000);
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) loadEPG(); });
+
+function getEPGForChannel(ch){ if(!ch) return []; if(ch.tvgId && epgData[ch.tvgId]) return epgData[ch.tvgId]; let cn=cleanName(ch.name); if(epgByName[cn]) return epgByName[cn]; for(let k in epgByName){ if(cn && k && (k.includes(cn)||cn.includes(k))) return epgByName[k]; } return []; }
+function fmt(d){ return d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}); }
+function updateEPGNow(){
+  if(!currentChannel) return;
+  let list=getEPGForChannel(currentChannel); let now=new Date(); let cur=list.find(p=> now>=p.start && now<p.stop);
+  let t=document.getElementById('epgNowTitle'); if(t) t.innerText='🔴 #'+currentChannel.chNo+' LIVE NOW: '+(cur?cur.title:currentChannel.name);
+  let tm=document.getElementById('epgNowTime'); if(tm) tm.innerText=cur?fmt(cur.start)+' - '+fmt(cur.stop):'';
+}
+function assignAutoNumbers(){
+  let saved={}; try{ saved=JSON.parse(localStorage.getItem('ULTRA_CHANNEL_NUMBERS')||'{}'); }catch(e){ saved={}; }
+  let used=new Set(); channelsData.forEach(ch=>{ if(ch.chNo){ used.add(ch.chNo); saved[ch.url]=ch.chNo; } });
+  channelsData.forEach(ch=>{ if(!ch.chNo && saved[ch.url] && !used.has(saved[ch.url])){ ch.chNo=saved[ch.url]; used.add(ch.chNo); } });
+  let maxNo=used.size?Math.max(...used):(AUTO_START_NUMBER-1);
+  channelsData.forEach(ch=>{ if(!ch.chNo){ maxNo++; ch.chNo=maxNo; used.add(maxNo); saved[ch.url]=maxNo; } });
+  try{ localStorage.setItem('ULTRA_CHANNEL_NUMBERS', JSON.stringify(saved)); }catch(e){}
+  channelsData.sort((a,b)=>a.chNo-b.chNo);
+}
+function renderGuide(){
+  searchText=document.getElementById('searchInput').value.trim();
+  let hours=[];
+  if(activeDay==='morning') hours=[6,7,8,9,10,11];
+  else if(activeDay==='afternoon') hours=[12,13,14,15,16,17];
+  else if(activeDay==='evening') hours=[18,19,20,21];
+  else if(activeDay==='night') hours=[21,22,23,0,1];
+  else hours=[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+  let th=document.getElementById('timeHeader'); th.innerHTML='';
+  hours.forEach(h=>{ let d=new Date(); d.setHours(h,0,0,0); let div=document.createElement('div'); div.className='time-cell'; div.style.minWidth='140px'; div.innerText=d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}); th.appendChild(div); });
+  let now=new Date(); let nowStr=now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  let badge=document.createElement('div'); badge.className='now-badge'; badge.innerText=nowStr; th.appendChild(badge);
+  let list=channelsData.filter(ch=>{ if(searchText && !ch.name.toLowerCase().includes(searchText.toLowerCase()) && !String(ch.chNo).includes(searchText)) return false; return true; });
+  document.getElementById('status').innerText=list.length+' Channels | '+now.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'})+' | Abhi Time: '+nowStr+(lastEPGUpdate?' | EPG Updated: '+lastEPGUpdate.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}):'');
+  let col=document.getElementById('channelCol'); col.innerHTML='';
+  let progCol=document.getElementById('progCol'); progCol.innerHTML='';
+  list.forEach((ch)=>{
+    let card=document.createElement('div'); card.className='ch-card'+(currentChannel && currentChannel.url===ch.url?' active':'');
+    card.innerHTML=`<img src="${ch.logo}" onerror="this.src='https://via.placeholder.com/75x32?text=TV'"><div class="num">#${ch.chNo}</div><div class="cname">${ch.name}</div>`;
+    card.onclick=()=>playChannel(ch); col.appendChild(card);
+    let row=document.createElement('div'); row.className='prog-row';
+    let plist=getEPGForChannel(ch);
+    let showList=plist.filter(p=>{
+      if(activeDay==='morning') return p.start.getHours()>=6 && p.start.getHours()<12;
+      if(activeDay==='afternoon') return p.start.getHours()>=12 && p.start.getHours()<18;
+      if(activeDay==='evening') return p.start.getHours()>=18 && p.start.getHours()<22;
+      if(activeDay==='night') return p.start.getHours()>=21 || p.start.getHours()<2;
+      return true;
+    });
+    if(!showList.length){ let b=document.createElement('div'); b.className='prog-block'; b.style.flex='1'; b.innerHTML=`<b>${ch.name}</b><span>#${ch.chNo} | Program jald aayega...</span>`; b.onclick=()=>playChannel(ch); row.appendChild(b); }
+    else {
+      showList.slice(0,8).forEach(p=>{
+        let isLive = now>=p.start && now<p.stop;
+        let b=document.createElement('div'); b.className='prog-block'+(isLive?' live':'');
+        let dur=Math.max(1, (p.stop-p.start)/60000); b.style.minWidth=Math.max(140, dur*2.2)+'px'; b.style.flex='none';
+        b.innerHTML=`<b>${p.title}</b><span>${fmt(p.start)} - ${fmt(p.stop)}</span>`;
+        b.onclick=()=>playChannel(ch); row.appendChild(b);
+      });
+    }
+    let line=document.createElement('div'); line.className='now-line'; line.style.left=(now.getHours()*140+now.getMinutes()*2)+'px'; row.appendChild(line);
+    progCol.appendChild(row);
+  });
+  progCol.onscroll=()=>{ th.scrollLeft=progCol.scrollLeft; };
+}
+function playChannel(ch){
+  currentChannel=ch;
+  document.getElementById('playerWrap').classList.add('show');
+  document.getElementById('videoControls').style.display='flex';
+  document.getElementById('epgNow').style.display='block';
+  updateEPGNow();
+  document.getElementById('playerWrap').scrollIntoView({behavior:'smooth'});
+  playUrl(ch.url,0); renderGuide();
+}
+function playUrl(url, attempt){
+  let playSrc=url;
+  if(url.startsWith('http://') || attempt>0){ playSrc=PROXIES[attempt % PROXIES.length]+encodeURIComponent(url); }
+  if(hls){ try{hls.destroy();}catch(e){} hls=null; }
+  video.pause(); video.removeAttribute('src'); video.load();
+  if(window.Hls && Hls.isSupported()){ hls=new Hls(); hls.loadSource(playSrc); hls.attachMedia(video); hls.on(Hls.Events.MANIFEST_PARSED, ()=>{ video.play().catch(()=>{ video.muted=true; video.play().catch(()=>{}); }); }); hls.on(Hls.Events.ERROR, function(e,data){ if(data.fatal && attempt<3) playUrl(url,attempt+1); }); }
+  else { video.src=playSrc; video.play().catch(()=>{}); }
+}
+async function fetchM3U(){
+  try{ let r=await fetch(M3U_URL); if(r.ok){ let t=await r.text(); if(t.includes('#EXTINF')) return t; } }catch(e){}
+  try{ let r=await fetch(PROXIES[0]+encodeURIComponent(M3U_URL)); if(r.ok){ let t=await r.text(); if(t.includes('#EXTINF')) return t; } }catch(e){}
+  return '';
+}
+async function loadFromM3U(){
+  let text=await fetchM3U(); channelsData=[];
+  if(!text){ document.getElementById('status').innerText='M3U Nahi Mila!'; return; }
+  let lines=text.split('\n'), cur=null;
+  for(let line of lines){
+    line=line.trim();
+    if(line.startsWith('#EXTINF')){
+      let name=line.split(',').pop()||'Channel';
+      let logo=(line.match(/tvg-logo="([^"]*)"/)||[])[1]||'';
+      let tvgId=(line.match(/tvg-id="([^"]*)"/)||[])[1]||'';
+      let chNoRaw=(line.match(/tvg-chno="([^"]*)"/)||[])[1]||(line.match(/chno="([^"]*)"/)||[])[1]||'';
+      let lang=(line.match(/tvg-language="([^"]*)"/)||[])[1]||'Others';
+      let cat=(line.match(/group-title="([^"]*)"/)||[])[1]||'Entertainment';
+      cur={name,logo,tvgId,lang,cat,url:'',chNo: chNoRaw ? parseInt(chNoRaw) : null};
+    } else if(line.startsWith('http') && cur){ cur.url=line; channelsData.push(cur); cur=null; }
+  }
+  assignAutoNumbers();
+  renderGuide(); loadEPG();
+}
+loadFromM3U();
+</script>
+</body>
+</html>
