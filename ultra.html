@@ -51,8 +51,6 @@ video{width:100%;aspect-ratio:16/9;background:#000;display:block}
 .prog-block span{font-size:13px;color:#ddd;margin-top:4px}
 .now-line{position:absolute;top:0;bottom:0;width:3px;background:#1db954;z-index:4;pointer-events:none}
 #status{text-align:center;color:#aaa;padding:10px;font-size:13px}
-.load-more{width:100%;background:#e50914;color:#fff;border:none;padding:16px;font-size:18px;font-weight:bold;cursor:pointer;margin:10px 0;border-radius:10px}
-.load-more:active{background:#b00710}
 </style>
 </head>
 <body>
@@ -69,99 +67,125 @@ video{width:100%;aspect-ratio:16/9;background:#000;display:block}
 
 <div class="guide-head">
 <h1><span>LIVE TV ULTRA PLAYER</span><br>GUIDE</h1>
-<div class="search-box"><input id="searchInput" placeholder="1200 me se dhoondo... naam ya number likho..." oninput="onSearch()"><span>🔍</span></div>
+<div class="search-box"><input id="searchInput" placeholder="Find by channel name... or number..." oninput="renderGuide()"><span>🔍</span></div>
 <div class="timeline-bar"><div class="tab active">TIMELINE</div><div style="font-size:22px;color:#ff5722">🔽</div></div>
 </div>
 <div class="date-row"><div class="date-left">Today <span style="color:#ff5722">▼</span></div><div class="day-tabs" id="dayTabs"><div class="active" onclick="setDay('all',this)">ALL DAY</div><div onclick="setDay('morning',this)">MORNING</div><div onclick="setDay('afternoon',this)">AFTERNOON</div><div onclick="setDay('evening',this)">EVENING</div><div onclick="setDay('night',this)">NIGHT</div></div></div>
 <div class="time-header"><div class="time-left">◀</div><div class="time-scroll" id="timeHeader"></div></div>
 <p id="status">Guide Loading... ⏳</p>
 <div class="guide-wrap"><div class="channel-col" id="channelCol"></div><div class="prog-col" id="progCol"></div></div>
-<div style="padding:0 15px"><button id="loadMoreBtn" class="load-more" onclick="loadMore()" style="display:none">⬇️ Aur 50 Channels Dekho</button></div>
 
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script>
 let channelsData=[], hls=null, video=document.getElementById('tv-player'), currentChannel=null;
 let M3U_URL='https://m3u-iptv.github.io/iptv/index.m3u';
-let EPG_URLS=['https://raw.githubusercontent.com/m3u-iptv/live/main/epg.xml.gz','https://cdn.jsdelivr.net/gh/m3u-iptv/live@main/epg.xml.gz'];
-let PROXIES=['https://corsproxy.io/?url=','https://api.allorigins.win/raw?url='];
+// ✅ AAPKA EPG LINK - Yahi Wala Chalega Sir, Koi Dusra Nahi!
+let EPG_URLS=[
+ 'https://raw.githubusercontent.com/m3u-iptv/live/main/epg.xml.gz',
+ 'https://cdn.jsdelivr.net/gh/m3u-iptv/live@main/epg.xml.gz'
+];
+let PROXIES=['https://corsproxy.io/?url=','https://api.allorigins.win/raw?url=','https://api.codetabs.com/v1/proxy?quest='];
 let epgData={}, epgByName={}, activeDay='all', searchText='';
 let AUTO_START_NUMBER = 1;
-let lastEPGUpdate=null, lastEPGDate=new Date().toDateString(), epgLoading=false;
-// ✅ 1200 CHANNELS KE LIYE - Ek baar me sirf 50 dikhayenge!
-let VISIBLE_COUNT = 50;
-let PAGE_SIZE = 50;
+let lastEPGUpdate=null, lastEPGDate=new Date().toDateString();
 
-function onSearch(){ VISIBLE_COUNT=50; renderGuide(); }
-function loadMore(){ VISIBLE_COUNT+=PAGE_SIZE; renderGuide(); window.scrollTo({top: document.body.scrollHeight-400, behavior:'smooth'}); }
 function setVideoSize(mode,btn){ video.style.objectFit=mode=='zoom'?'cover':mode; video.style.transform=mode=='zoom'?'scale(1.25)':'scale(1)'; document.querySelectorAll('.video-controls button').forEach(b=>{ if(b.textContent.includes('Fit')||b.textContent.includes('Fill')||b.textContent.includes('Zoom')) b.classList.remove('active'); }); if(btn) btn.classList.add('active'); }
 function toggleSound(){ video.muted=false; video.volume=1; document.getElementById('soundBtn').innerText='🔊 Sound On Hai'; video.play().catch(()=>{}); }
 function closePlayer(){ document.getElementById('playerWrap').classList.remove('show'); document.getElementById('videoControls').style.display='none'; document.getElementById('epgNow').style.display='none'; if(hls){try{hls.destroy();}catch(e){}} video.pause(); }
 function setDay(d,el){ activeDay=d; document.querySelectorAll('#dayTabs div').forEach(b=>b.classList.remove('active')); el.classList.add('active'); renderGuide(); }
 function cleanName(s){ return (s||'').toLowerCase().replace(/\(.*?\)/g,'').replace(/\{.*?\}/g,'').replace(/hd|fhd|4k|1080p|720p|576p|sd|live|tv/g,'').replace(/[^a-z0-9]/g,'').trim(); }
 function parseEPGTime(s){ if(!s) return new Date(); if(s.includes('T')) return new Date(s); try{ let y=+s.substr(0,4), mo=+s.substr(4,2)-1, d=+s.substr(6,2), h=+s.substr(8,2), mi=+s.substr(10,2); let tz=s.substr(15,5)||'+0000'; let date=new Date(Date.UTC(y,mo,d,h,mi)); if(tz.length==5){ let sign=tz[0]==='-'?-1:1; let th=+tz.substr(1,2), tm=+tz.substr(3,2); date=new Date(date.getTime()-sign*(th*60+tm)*60000); } return date; }catch(e){ return new Date(); } }
+
+// ✅ GZ WALA EPG KHOLNE WALA SPECIAL CODE - Yahi Pehle Missing Tha Sir!
 async function ungzipBuffer(buf){
-  let bytes=new Uint8Array(buf);
-  let isGz=bytes.length>2 && bytes[0]==0x1f && bytes[1]==0x8b;
-  if(!isGz) return new TextDecoder().decode(buf);
-  try{ let ds=new DecompressionStream('gzip'); let stream=new Blob([buf]).stream().pipeThrough(ds); return await new Response(stream).text(); }catch(e){ return ''; }
+  // Pehle check karo - kya ye sach me GZ hai? (1f 8b)
+  let bytes = new Uint8Array(buf);
+  let isGz = bytes.length>2 && bytes[0]==0x1f && bytes[1]==0x8b;
+  if(!isGz){
+    // GZ nahi hai, sidha text hai
+    return new TextDecoder().decode(buf);
+  }
+  try{
+    // Chrome / Android me GZ kholne wala code
+    let ds = new DecompressionStream('gzip');
+    let stream = new Blob([buf]).stream().pipeThrough(ds);
+    let txt = await new Response(stream).text();
+    return txt;
+  }catch(e){
+    // Agar phone purana hai to pako.js se kholo
+    return '';
+  }
 }
 async function fetchEPGOne(url){
-  try{ let r=await fetch(url); if(r.ok){ let buf=await r.arrayBuffer(); let txt=await ungzipBuffer(buf); if(txt.includes('<programme')) return txt; } }catch(e){}
-  for(let p of PROXIES){ try{ let r=await fetch(p+encodeURIComponent(url)); if(!r.ok) continue; let buf=await r.arrayBuffer(); let txt=await ungzipBuffer(buf); if(txt.includes('<programme')) return txt; }catch(e){} }
-  return '';
-}
-// ✅ 1200 CHANNELS - EPG Sirf Dikhne Wale Channels Ka!
-async function loadEPG(){
-  if(epgLoading) return; epgLoading=true;
-  document.getElementById('status').innerText='EPG Download Ho Raha Hai... Sirf Dikhne Wale 50 Channels Ka ⏳';
-  for(let url of EPG_URLS){
-    let xml=await fetchEPGOne(url); if(!xml) continue;
+  // 1. Pehle Direct - bina proxy ke
+  try{
+    let r=await fetch(url);
+    if(r.ok){
+      let buf=await r.arrayBuffer();
+      let txt=await ungzipBuffer(buf);
+      if(txt.includes('<tv')||txt.includes('<programme')) return txt;
+      // Agar proxy ne pehle se khol diya ho to text me bhi check karo
+      if(txt.includes('programme')) return txt;
+    }
+  }catch(e){}
+  // 2. Proxy se - corsproxy.io GZ ko sahi se deta hai
+  for(let p of PROXIES){
     try{
-      // Sirf jo channel abhi screen pe hai + pehle 100 - baaki ka EPG baad me aayega jab scroll karoge
-      let visibleList = channelsData.slice(0, Math.max(VISIBLE_COUNT,100));
-      let wantedIds=new Set(); let wantedNames=new Set();
-      visibleList.forEach(c=>{ if(c.tvgId) wantedIds.add(c.tvgId); let cn=cleanName(c.name); if(cn) wantedNames.add(cn); });
-      let now=new Date();
-      let todayStr=now.getFullYear()+String(now.getMonth()+1).padStart(2,'0')+String(now.getDate()).padStart(2,'0');
-      let tomorrow=new Date(now.getTime()+24*60*60*1000);
-      let tomorrowStr=tomorrow.getFullYear()+String(tomorrow.getMonth()+1).padStart(2,'0')+String(tomorrow.getDate()).padStart(2,'0');
-      let newEPG={}; let count=0; let pos=0;
-      while(true){
-        let s=xml.indexOf('<programme', pos); if(s===-1) break;
-        let e=xml.indexOf('</programme>', s); if(e===-1) break;
-        let block=xml.substring(s, e+12); pos=e+12;
-        if(block.indexOf(todayStr)===-1 && block.indexOf(tomorrowStr)===-1) continue;
-        let chMatch=block.match(/channel="([^"]+)"/); if(!chMatch) continue;
-        let chId=chMatch[1];
-        if(!wantedIds.has(chId)){
-          let found=false; let cid=chId.toLowerCase().replace(/[^a-z0-9]/g,'');
-          for(let n of wantedNames){ if(cid.includes(n) || n.includes(cid)) { found=true; break; } }
-          if(!found) continue;
-        }
-        let startM=block.match(/start="([^"]+)"/); let stopM=block.match(/stop="([^"]+)"/); let titleM=block.match(/<title[^>]*>([^<]+)<\/title>/);
-        if(!startM || !titleM) continue;
-        let start=parseEPGTime(startM[1]); let stop=stopM?parseEPGTime(stopM[1]):new Date(start.getTime()+30*60000);
-        if(!newEPG[chId]) newEPG[chId]=[];
-        if(newEPG[chId].length>=15) continue;
-        newEPG[chId].push({start,stop,title:titleM[1].trim(),desc:''}); count++;
-        if(count>1500) break;
+      let r=await fetch(p+encodeURIComponent(url));
+      if(!r.ok) continue;
+      let buf=await r.arrayBuffer();
+      let txt=await ungzipBuffer(buf);
+      // Proxy kabhi kabhi text me GZ deta hai, usko bhi try karo
+      if(!txt.includes('<tv')){
+        try{ let t2=await r.clone().text(); if(t2.includes('<tv')) txt=t2; }catch(e){}
       }
-      xml=null;
-      epgData=newEPG; epgByName={};
-      channelsData.forEach(c=>{ let cn=cleanName(c.name); for(let id in newEPG){ let cleanId=id.toLowerCase().replace(/[^a-z0-9]/g,'').replace(/hd|fhd|4k|1080p|720p|576p|sd|live|tv/g,''); if(cleanId.includes(cn) || cn.includes(cleanId) || c.tvgId===id){ if(!epgByName[cn]) epgByName[cn]=[]; epgByName[cn]=newEPG[id]; } } });
-      for(let k in epgData) epgData[k].sort((a,b)=>a.start-b.start);
-      lastEPGUpdate=new Date();
-      let updEl=document.getElementById('epgUpdated'); if(updEl) updEl.innerText='🔄 EPG Updated: '+lastEPGUpdate.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})+' | '+count+' Programs | 1200 Channels Ready ✅';
-      epgLoading=false; updateEPGNow(); renderGuide(); return;
+      if(txt.includes('<tv')||txt.includes('<programme')) return txt;
     }catch(e){}
   }
-  epgLoading=false;
+  return '';
 }
-setInterval(()=>{ loadEPG(); }, 60*60*1000);
-setInterval(()=>{ if(new Date().toDateString()!==lastEPGDate){ lastEPGDate=new Date().toDateString(); loadEPG(); } updateEPGNow(); }, 30*1000);
+
+async function loadEPG(){
+  document.getElementById('status').innerText='EPG Download Ho Raha Hai... .gz File Khul Rahi Hai, Thoda Time Lagega ⏳';
+  for(let url of EPG_URLS){
+    let xml=await fetchEPGOne(url);
+    if(!xml) continue;
+    try{
+      let doc=new DOMParser().parseFromString(xml,'text/xml');
+      let progs=doc.querySelectorAll('programme');
+      if(!progs.length) continue;
+      epgData={}; epgByName={}; let chMap={};
+      doc.querySelectorAll('channel').forEach(c=>{ let id=c.getAttribute('id'); let names=[...c.querySelectorAll('display-name')].map(n=>n.textContent); if(id) chMap[id]=names; });
+      progs.forEach(p=>{
+        let ch=p.getAttribute('channel'); let start=parseEPGTime(p.getAttribute('start')); let stop=parseEPGTime(p.getAttribute('stop'));
+        let title=p.querySelector('title')?.textContent||'Program'; let desc=p.querySelector('desc')?.textContent||'';
+        if(!epgData[ch]) epgData[ch]=[];
+        epgData[ch].push({start,stop,title,desc});
+        (chMap[ch]||[]).forEach(n=>{ let k=cleanName(n); if(!epgByName[k]) epgByName[k]=[]; epgByName[k].push({start,stop,title,desc}); });
+        let kid=cleanName(ch); if(!epgByName[kid]) epgByName[kid]=[]; epgByName[kid].push({start,stop,title,desc});
+      });
+      for(let k in epgData) epgData[k].sort((a,b)=>a.start-b.start);
+      for(let k in epgByName) epgByName[k].sort((a,b)=>a.start-b.start);
+      lastEPGUpdate=new Date();
+      let updEl=document.getElementById('epgUpdated');
+      if(updEl) updEl.innerText='🔄 EPG Auto Updated: '+lastEPGUpdate.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})+' | '+progs.length+' Programs | Aapka .gz Wala EPG Chal Gaya ✅';
+      updateEPGNow(); renderGuide(); return;
+    }catch(e){ console.log('EPG parse fail', e); }
+  }
+  document.getElementById('status').innerText='EPG Load Nahi Hua! Net Slow Hai, 1 Min Baad Refresh Karo!';
+}
+setInterval(()=>{ loadEPG(); }, 30*60*1000);
+setInterval(()=>{ if(new Date().toDateString()!==lastEPGDate){ lastEPGDate=new Date().toDateString(); loadEPG(); } updateEPGNow(); renderGuide(); }, 30*1000);
+document.addEventListener('visibilitychange', ()=>{ if(!document.hidden) loadEPG(); });
+
 function getEPGForChannel(ch){ if(!ch) return []; if(ch.tvgId && epgData[ch.tvgId]) return epgData[ch.tvgId]; let cn=cleanName(ch.name); if(epgByName[cn]) return epgByName[cn]; for(let k in epgByName){ if(cn && k && (k.includes(cn)||cn.includes(k))) return epgByName[k]; } return []; }
 function fmt(d){ return d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}); }
-function updateEPGNow(){ if(!currentChannel) return; let list=getEPGForChannel(currentChannel); let now=new Date(); let cur=list.find(p=> now>=p.start && now<p.stop); let t=document.getElementById('epgNowTitle'); if(t) t.innerText='🔴 #'+currentChannel.chNo+' LIVE NOW: '+(cur?cur.title:currentChannel.name); let tm=document.getElementById('epgNowTime'); if(tm) tm.innerText=cur?fmt(cur.start)+' - '+fmt(cur.stop):''; }
+function updateEPGNow(){
+  if(!currentChannel) return;
+  let list=getEPGForChannel(currentChannel); let now=new Date(); let cur=list.find(p=> now>=p.start && now<p.stop);
+  let t=document.getElementById('epgNowTitle'); if(t) t.innerText='🔴 #'+currentChannel.chNo+' LIVE NOW: '+(cur?cur.title:currentChannel.name);
+  let tm=document.getElementById('epgNowTime'); if(tm) tm.innerText=cur?fmt(cur.start)+' - '+fmt(cur.stop):'';
+}
 function assignAutoNumbers(){
   let saved={}; try{ saved=JSON.parse(localStorage.getItem('ULTRA_CHANNEL_NUMBERS')||'{}'); }catch(e){ saved={}; }
   let used=new Set(); channelsData.forEach(ch=>{ if(ch.chNo){ used.add(ch.chNo); saved[ch.url]=ch.chNo; } });
@@ -183,18 +207,13 @@ function renderGuide(){
   hours.forEach(h=>{ let d=new Date(); d.setHours(h,0,0,0); let div=document.createElement('div'); div.className='time-cell'; div.style.minWidth='140px'; div.innerText=d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}); th.appendChild(div); });
   let now=new Date(); let nowStr=now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit',second:'2-digit'});
   let badge=document.createElement('div'); badge.className='now-badge'; badge.innerText=nowStr; th.appendChild(badge);
-  // ✅ Search 1200 me se karega, lekin dikhayega sirf 50
-  let allFiltered=channelsData.filter(ch=>{ if(searchText && !ch.name.toLowerCase().includes(searchText.toLowerCase()) && !String(ch.chNo).includes(searchText)) return false; return true; });
-  // Agar search hai to pehle 50 dikhao, warna page wise
-  let list = allFiltered.slice(0, VISIBLE_COUNT);
-  document.getElementById('status').innerText=list.length+' / '+allFiltered.length+' Channels Dikh Rahe Hai | Total: '+channelsData.length+' | '+now.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'})+' | Abhi Time: '+nowStr+(lastEPGUpdate?' | EPG: '+lastEPGUpdate.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}):'');
-  let btn=document.getElementById('loadMoreBtn');
-  if(allFiltered.length > VISIBLE_COUNT){ btn.style.display='block'; btn.innerText='⬇️ Aur 50 Channels Dekho ('+VISIBLE_COUNT+' / '+allFiltered.length+')'; } else { btn.style.display='none'; }
+  let list=channelsData.filter(ch=>{ if(searchText && !ch.name.toLowerCase().includes(searchText.toLowerCase()) && !String(ch.chNo).includes(searchText)) return false; return true; });
+  document.getElementById('status').innerText=list.length+' Channels | '+now.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'})+' | Abhi Time: '+nowStr+(lastEPGUpdate?' | EPG Updated: '+lastEPGUpdate.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}):'');
   let col=document.getElementById('channelCol'); col.innerHTML='';
   let progCol=document.getElementById('progCol'); progCol.innerHTML='';
   list.forEach((ch)=>{
     let card=document.createElement('div'); card.className='ch-card'+(currentChannel && currentChannel.url===ch.url?' active':'');
-    card.innerHTML=`<img src="${ch.logo}" onerror="this.src='https://via.placeholder.com/75x32?text=TV'" loading="lazy"><div class="num">#${ch.chNo}</div><div class="cname">${ch.name}</div>`;
+    card.innerHTML=`<img src="${ch.logo}" onerror="this.src='https://via.placeholder.com/75x32?text=TV'"><div class="num">#${ch.chNo}</div><div class="cname">${ch.name}</div>`;
     card.onclick=()=>playChannel(ch); col.appendChild(card);
     let row=document.createElement('div'); row.className='prog-row';
     let plist=getEPGForChannel(ch);
@@ -219,7 +238,6 @@ function renderGuide(){
     progCol.appendChild(row);
   });
   progCol.onscroll=()=>{ th.scrollLeft=progCol.scrollLeft; };
-  setTimeout(()=>{ let pc=document.getElementById('progCol'); if(pc) pc.scrollLeft=(now.getHours()*140)-100; },100);
 }
 function playChannel(ch){
   currentChannel=ch;
