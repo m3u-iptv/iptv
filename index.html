@@ -73,10 +73,12 @@ async function loadFromM3U(){
   if(channelsData.length) changeChannel(channelsData[0].url);
 }
 function buildFilters(){
-  let langs=['all',...new Set(channelsData.map(c=>c.lang))];
-  let cats=['all',...new Set(channelsData.map(c=>c.cat))];
-  document.getElementById('language-filters').innerHTML = langs.map(l=>`<button class="filter-btn ${l==='all'?'active':''}" onclick="filterLanguage('${l}',this)">${l==='all'?'All Languages':l}</button>`).join('');
-  document.getElementById('category-filters').innerHTML = cats.map(c=>`<button class="filter-btn ${c==='all'?'active':''}" onclick="filterCategory('${c}',this)">${c==='all'?'All Categories':c}</button>`).join('');
+  let lang = (line.match(/tvg-language="([^"]*)"/)||[])[1] || 'Others';
+let cat = (line.match(/group-title="([^"]*)"/)||[])[1] || 'Entertainment';
+// Agar tvg-language khali hai to {Hindi} wale se le lo
+if(lang==='Others'){
+  let m = name.match(/\{([^}]+)\}/);
+  if(m) lang = m[1];
 }
 function loadChannels(){
   let grid=document.getElementById('channels-list'); grid.innerHTML='';
