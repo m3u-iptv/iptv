@@ -95,9 +95,15 @@ function playUrl(url, ch, attempt){
   hideErr();
   document.getElementById('status').innerText = 'Playing: ' + (ch?ch.name:'') + ' | Dalvik UA ✅';
   let playSrc = url;
-  // Pehle Direct, Fail ho to Proxy se
-  if(attempt===1) playSrc = 'https://corsproxy.io/?url=' + encodeURIComponent(url);
-  if(attempt===2) playSrc = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
+
+  // ✅ SABSE JARURI - Agar http:// hai to Hamesha Proxy se, Warna Browser Rok Dega!
+  if(url.startsWith('http://')){
+    playSrc = 'https://corsproxy.io/?url=' + encodeURIComponent(url);
+  } else if(attempt===1){
+    playSrc = 'https://corsproxy.io/?url=' + encodeURIComponent(url);
+  } else if(attempt===2){
+    playSrc = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
+  }
 
   if(hls){ try{hls.destroy();}catch(e){} hls=null; }
   video.pause(); video.removeAttribute('src'); video.load();
@@ -110,7 +116,7 @@ function playUrl(url, ch, attempt){
     hls.on(Hls.Events.ERROR, function(e,data){
       if(data.fatal){
         if(attempt < 2){ playUrl(url, ch, attempt+1); }
-        else { showErr('❌ Ye m3u8 Link Browser Me Block Hai Sir! VLC Me Check Karo, Waha Chalega To Link Sahi Hai!'); }
+        else { showErr('❌ Ye Link Abhi Down Hai Sir! VLC Me Try Karo - Waha Chal Raha Hai To Yaha Bhi Chalega!'); }
       }
     });
   } else {
