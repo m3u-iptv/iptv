@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LIVE TV ULTRA PLAYER</title>
+<link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+<style>
+body{font-family:'Segoe UI',Arial,sans-serif;background:#0f0f0f;color:#fff;margin:0;padding:0;display:flex;flex-direction:column;align-items:center}
+header{width:100%;background:#1f1f1f;padding:15px 0;text-align:center;font-size:24px;font-weight:bold;color:#e50914;box-shadow:0 4px 10px rgba(0,0,0,.5);position:sticky;top:0;z-index:10}
+.player-wrapper{width:90%;max-width:850px;margin:20px 0;position:relative;overflow:hidden;border-radius:12px;background:#000}
+.video-js{width:100%!important}
+.filter-container{width:90%;max-width:850px;margin-bottom:20px}
+.filter-title{font-size:14px;text-transform:uppercase;color:#aaa;margin-bottom:8px;letter-spacing:1px}
+.filter-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:10px}
+.filter-row::-webkit-scrollbar{height:6px}
+.filter-row::-webkit-scrollbar-thumb{background:#444;border-radius:10px}
+.filter-btn{background:#222;color:#ccc;border:1px solid #444;padding:8px 16px;border-radius:20px;cursor:pointer;white-space:nowrap}
+.filter-btn.active,.filter-btn:hover{background:#e50914;color:#fff;border-color:#e50914}
+.channels-section{width:90%;max-width:850px;margin-top:10px}
+.channels-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:15px;margin-bottom:50px}
+.channel-card{background:#1a1a1a;border:1px solid #2d2d2d;border-radius:8px;padding:20px 10px;text-align:center;cursor:pointer}
+.channel-card:hover{transform:translateY(-5px);border-color:#e50914}
+.channel-card img{width:60px;height:45px;object-fit:contain;background:#fff;border-radius:8px;display:block;margin:0 auto 10px}
+</style>
+</head>
+<body>
+<header>📺 LIVE TV ULTRA PLAYER</header>
+<div class="player-wrapper">
+<video id="tv-player" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto" playsinline></video>
+</div>
+<p id="status" style="color:#aaa;margin:-10px 0 15px">Loading channels...</p>
+
+<div class="filter-container"><div class="filter-title">Languages</div><div class="filter-row" id="language-filters"></div></div>
+<div class="filter-container"><div class="filter-title">Categories</div><div class="filter-row" id="category-filters"></div></div>
+
+<div class="channels-section"><div class="filter-title">Available Channels</div><div class="channels-grid" id="channels-list"></div></div>
+
+<script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+<script>
+let channelsData = [];
+let activeLanguage='all', activeCategory='all';
+let player = videojs('tv-player',{autoplay:true,muted:true,fluid:true});
+
+async function loadFromM3U(){
+  try{
+    let res = await fetch('index.m3u');
+    let text = await res.text();
+    let lines = text.split('\n'), cur=null;
+    for(let line of lines){
+      line=line.trim();
+      if(line.startsWith('#EXTINF')){
+        let name = line.split(',').pop()||'Channel';
+        let logo = (line.match(/tvg-logo="([^"]*)"/)||[])[1]||'';
+        let lang = (line.match(/tvg-language="([^"]*)"/)||line.match(/group-title="([^"]*)"/)||[])[1]||'Others';
+        let cat = (line.match(/group-title="([^"]*)"/)||[])[1]||'Entertainment';
+        // Language guess from name
+        if(name.includes('DD')) lang = lang;
+        cur={name,logo,lang,cat,url:''};
+      } else if(line.startsWith('http') && cur){ cur.url=line; channelsData.push(cur); cur=null; }
+    }
+  }catch(e){ console.log(e); }
+  // Agar m3u me 0 channel hai to backup channels
+  if(channelsData.length===0){
+    channelsData=[
+      {name:"DD Arunprabha",lang:"Hindi",cat:"News",url:"https://d2lk5u59tns74c.cloudfront.net/out/v1/308556d9fd1246adb479ef012a39bbfe/index_3.m3u8",logo:""},
+      {name:"DD Assam",lang:"Assamese",cat:"Entertainment",url:"https://d2lk5u59tns74c.cloudfront.net/out/v1/d380bf5c167b4319a46cdd8204bc26b2/index_3.m3u8",logo:""},
+      {name:"DD Girnar",lang:"Gujarati",cat:"Entertainment",url:"https://d2lk5u59tns74c.cloudfront.net/out/v1/558fdb9aebb54bb5bbbf0ced03686148/index.m3u8",logo:""}
+    ];
+  }
+  document.getElementById('status').innerText = channelsData.length + ' Channels Loaded ✅';
+  buildFilters(); loadChannels();
+  if(channelsData.length) changeChannel(channelsData[0].url);
+}
+function buildFilters(){
+  let langs=['all',...new Set(channelsData.map(c=>c.lang))];
+  let cats=['all',...new Set(channelsData.map(c=>c.cat))];
+  document.getElementById('language-filters').innerHTML = langs.map(l=>`<button class="filter-btn ${l==='all'?'active':''}" onclick="filterLanguage('${l}',this)">${l==='all'?'All Languages':l}</button>`).join('');
+  document.getElementById('category-filters').innerHTML = cats.map(c=>`<button class="filter-btn ${c==='all'?'active':''}" onclick="filterCategory('${c}',this)">${c==='all'?'All Categories':c}</button>`).join('');
+}
+function loadChannels(){
+  let grid=document.getElementById('channels-list'); grid.innerHTML='';
+  let filtered=channelsData.filter(ch=>(activeLanguage==='all'||ch.lang===activeLanguage)&&(activeCategory==='all'||ch.cat===activeCategory));
+  if(!filtered.length){ grid.innerHTML='<div style="color:#aaa;padding:20px;text-align:center">Is filter me koi channel nahi hai</div>'; return; }
+  filtered.forEach(ch=>{
+    let d=document.createElement('div'); d.className='channel-card';
+    d.innerHTML=`<img src="${ch.logo}" onerror="this.src='https://via.placeholder.com/60x45?text=TV'"><span>${ch.name}</span>`;
+    d.onclick=()=>changeChannel(ch.url); grid.appendChild(d);
+  });
+}
+function changeChannel(url){ player.src({src:url,type:'application/x-mpegURL'}); player.play().catch(()=>{}); }
+function filterLanguage(lang,btn){ activeLanguage=lang; document.querySelectorAll('#language-filters .filter-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); loadChannels(); }
+function filterCategory(cat,btn){ activeCategory=cat; document.querySelectorAll('#category-filters .filter-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); loadChannels(); }
+loadFromM3U();
+</script>
+</body>
+</html>
