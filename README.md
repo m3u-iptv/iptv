@@ -1,6 +1,6 @@
 ### LIVE TV ULTRA PLAYER 
 
-http://localhost:26543/LIVE+TV+ULTRA+PLAYER.html
+http://m3u-iptv.github.io/iptv/index.html
 
 
 ### M3U-IPTV M3U File Links 2026
