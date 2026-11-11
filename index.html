@@ -52,15 +52,17 @@ async function loadFromM3U(){
       if(line.startsWith('#EXTINF')){
         let name = line.split(',').pop()||'Channel';
         let logo = (line.match(/tvg-logo="([^"]*)"/)||[])[1]||'';
-        let lang = (line.match(/tvg-language="([^"]*)"/)||line.match(/group-title="([^"]*)"/)||[])[1]||'Others';
-        let cat = (line.match(/group-title="([^"]*)"/)||[])[1]||'Entertainment';
-        // Language guess from name
-        if(name.includes('DD')) lang = lang;
+        // ✅ YAHI WALA SAHI CODE - Aap wala
+        let lang = (line.match(/tvg-language="([^"]*)"/)||[])[1] || 'Others';
+        let cat = (line.match(/group-title="([^"]*)"/)||[])[1] || 'Entertainment';
+        if(lang==='Others'){
+          let m = name.match(/\{([^}]+)\}/);
+          if(m) lang = m[1];
+        }
         cur={name,logo,lang,cat,url:''};
       } else if(line.startsWith('http') && cur){ cur.url=line; channelsData.push(cur); cur=null; }
     }
   }catch(e){ console.log(e); }
-  // Agar m3u me 0 channel hai to backup channels
   if(channelsData.length===0){
     channelsData=[
       {name:"DD Arunprabha",lang:"Hindi",cat:"News",url:"https://d2lk5u59tns74c.cloudfront.net/out/v1/308556d9fd1246adb479ef012a39bbfe/index_3.m3u8",logo:""},
@@ -72,14 +74,15 @@ async function loadFromM3U(){
   buildFilters(); loadChannels();
   if(channelsData.length) changeChannel(channelsData[0].url);
 }
+
+// ✅ YE THIK KAR DIYA - Ab Filter Banenge
 function buildFilters(){
-  let lang = (line.match(/tvg-language="([^"]*)"/)||[])[1] || 'Others';
-let cat = (line.match(/group-title="([^"]*)"/)||[])[1] || 'Entertainment';
-// Agar tvg-language khali hai to {Hindi} wale se le lo
-if(lang==='Others'){
-  let m = name.match(/\{([^}]+)\}/);
-  if(m) lang = m[1];
+  let langs=['all',...new Set(channelsData.map(c=>c.lang))];
+  let cats=['all',...new Set(channelsData.map(c=>c.cat))];
+  document.getElementById('language-filters').innerHTML = langs.map(l=>`<button class="filter-btn ${l==='all'?'active':''}" onclick="filterLanguage('${l}',this)">${l==='all'?'All Languages':l}</button>`).join('');
+  document.getElementById('category-filters').innerHTML = cats.map(c=>`<button class="filter-btn ${c==='all'?'active':''}" onclick="filterCategory('${c}',this)">${c==='all'?'All Categories':c}</button>`).join('');
 }
+
 function loadChannels(){
   let grid=document.getElementById('channels-list'); grid.innerHTML='';
   let filtered=channelsData.filter(ch=>(activeLanguage==='all'||ch.lang===activeLanguage)&&(activeCategory==='all'||ch.cat===activeCategory));
