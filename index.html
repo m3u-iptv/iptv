@@ -37,45 +37,65 @@ header{width:100%;background:#1f1f1f;padding:15px 0;text-align:center;font-size:
 <div class="channels-section"><div class="filter-title">Available Channels</div><div class="channels-grid" id="channels-list"></div></div>
 
 <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <script>
 let channelsData = [];
 let activeLanguage='all', activeCategory='all';
 let player = videojs('tv-player',{autoplay:true,muted:true,fluid:true});
+let hls = null;
+let DEFAULT_UA = 'Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)';
 
 async function loadFromM3U(){
   try{
     let res = await fetch('index.m3u');
     let text = await res.text();
     let lines = text.split('\n'), cur=null;
+    let pendingUA = '', pendingRef = '';
     for(let line of lines){
       line=line.trim();
+      // ✅ EXTVLCOPT - User-Agent / Referer Pakadna
+      if(line.startsWith('#EXTVLCOPT')){
+        // #EXTVLCOPT:http-user-agent=Dalvik...
+        if(line.includes('http-user-agent=')){
+          let ua = line.split('http-user-agent=')[1]||'';
+          ua = ua.trim();
+          if(cur) cur.userAgent = ua;
+          else pendingUA = ua;
+        }
+        if(line.includes('http-referer=')){
+          let rf = line.split('http-referer=')[1]||'';
+          rf = rf.trim();
+          if(cur) cur.referer = rf;
+          else pendingRef = rf;
+        }
+        continue;
+      }
       if(line.startsWith('#EXTINF')){
         let name = line.split(',').pop()||'Channel';
         let logo = (line.match(/tvg-logo="([^"]*)"/)||[])[1]||'';
-        // ✅ YAHI WALA SAHI CODE - Aap wala
         let lang = (line.match(/tvg-language="([^"]*)"/)||[])[1] || 'Others';
         let cat = (line.match(/group-title="([^"]*)"/)||[])[1] || 'Entertainment';
         if(lang==='Others'){
           let m = name.match(/\{([^}]+)\}/);
           if(m) lang = m[1];
         }
-        cur={name,logo,lang,cat,url:''};
+        cur={name,logo,lang,cat,url:'',userAgent:pendingUA||DEFAULT_UA,referer:pendingRef||''};
+        pendingUA=''; pendingRef='';
       } else if(line.startsWith('http') && cur){ cur.url=line; channelsData.push(cur); cur=null; }
     }
   }catch(e){ console.log(e); }
   if(channelsData.length===0){
     channelsData=[
-      {name:"DD Arunprabha",lang:"Hindi",cat:"News",url:"https://d2lk5u59tns74c.cloudfront.net/out/v1/308556d9fd1246adb479ef012a39bbfe/index_3.m3u8",logo:""},
-      {name:"DD Assam",lang:"Assamese",cat:"Entertainment",url:"https://d2lk5u59tns74c.cloudfront.net/out/v1/d380bf5c167b4319a46cdd8204bc26b2/index_3.m3u8",logo:""},
-      {name:"DD Girnar",lang:"Gujarati",cat:"Entertainment",url:"https://d2lk5u59tns74c.cloudfront.net/out/v1/558fdb9aebb54bb5bbbf0ced03686148/index.m3u8",logo:""}
+      {name:"DD Arunprabha",lang:"Hindi",cat:"News",url:"https://d2lk5u59tns74c.cloudfront.net/out/v1/308556d9fd1246adb479ef012a39bbfe/index_3.m3u8",logo:"",userAgent:DEFAULT_UA},
+      {name:"DD Assam",lang:"Assamese",cat:"Entertainment",url:"https://d2lk5u59tns74c.cloudfront.net/out/v1/d380bf5c167b4319a46cdd8204bc26b2/index_3.m3u8",logo:"",userAgent:DEFAULT_UA},
+      {name:"DD Girnar",lang:"Gujarati",cat:"Entertainment",url:"https://d2lk5u59tns74c.cloudfront.net/out/v1/558fdb9aebb54bb5bbbf0ced03686148/index.m3u8",logo:"",userAgent:DEFAULT_UA}
     ];
   }
   document.getElementById('status').innerText = channelsData.length + ' Channels Loaded ✅';
   buildFilters(); loadChannels();
-  if(channelsData.length) changeChannel(channelsData[0].url);
+  if(channelsData.length) changeChannel(channelsData[0].url, channelsData[0]);
 }
 
-// ✅ YE THIK KAR DIYA - Ab Filter Banenge
 function buildFilters(){
   let langs=['all',...new Set(channelsData.map(c=>c.lang))];
   let cats=['all',...new Set(channelsData.map(c=>c.cat))];
@@ -90,10 +110,39 @@ function loadChannels(){
   filtered.forEach(ch=>{
     let d=document.createElement('div'); d.className='channel-card';
     d.innerHTML=`<img src="${ch.logo}" onerror="this.src='https://via.placeholder.com/60x45?text=TV'"><span>${ch.name}</span>`;
-    d.onclick=()=>changeChannel(ch.url); grid.appendChild(d);
+    d.onclick=()=>changeChannel(ch.url, ch); grid.appendChild(d);
   });
 }
-function changeChannel(url){ player.src({src:url,type:'application/x-mpegURL'}); player.play().catch(()=>{}); }
+
+// ✅ NAYA PLAYER - User-Agent ke saath
+function changeChannel(url, ch){
+  let ua = (ch && ch.userAgent) ? ch.userAgent : DEFAULT_UA;
+  let ref = (ch && ch.referer) ? ch.referer : '';
+  document.getElementById('status').innerText = 'Playing: ' + (ch ? ch.name : '') + ' | UA: Dalvik ✅';
+  let video = document.getElementById('tv-player');
+  if(window.Hls && Hls.isSupported()){
+    if(hls) hls.destroy();
+    hls = new Hls({
+      xhrSetup: function(xhr, u){
+        try{ xhr.setRequestHeader('User-Agent', ua); }catch(e){}
+        try{ if(ref) xhr.setRequestHeader('Referer', ref); }catch(e){}
+      }
+    });
+    hls.loadSource(url);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, ()=>{ video.play().catch(()=>{}); });
+    hls.on(Hls.Events.ERROR, function(e, data){
+      if(data.fatal){
+        // Agar HLS fail ho to VideoJS se try karo
+        player.src({src:url,type:'application/x-mpegURL'});
+        player.play().catch(()=>{});
+      }
+    });
+  } else {
+    player.src({src:url,type:'application/x-mpegURL'});
+    player.play().catch(()=>{});
+  }
+}
 function filterLanguage(lang,btn){ activeLanguage=lang; document.querySelectorAll('#language-filters .filter-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); loadChannels(); }
 function filterCategory(cat,btn){ activeCategory=cat; document.querySelectorAll('#category-filters .filter-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); loadChannels(); }
 loadFromM3U();
