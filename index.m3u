@@ -220,6 +220,66 @@ https://mumbai-edge.smartplaytv.in/AdhyatmTV/index.m3u8
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://raw.githubusercontent.com/m3u-iptv/live/main/streams/Adithya_TV.m3u8
 
+#EXTINF:-1 tvg-id="Vyas.in" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/DD_Vyas.png" tvg-language="English" group-title="Education",Vyas Channel (1080p) {English}
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://playhls.media.nic.in/hls/live/vyas/vyas.m3u8
+
+#EXTINF:-1 tvg-id="WahPunjabi.in@SD" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Wah_Punjabi.png" tvg-language="Punjabi" group-title="Music",Wah Punjabi (720p) {Punjabi}
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://yuppnimrestreammum.akamaized.net/181224/smil:wahpunjabi.smil/playlist.m3u8?hdnts=st=1735898689~exp=1835898688~acl=*~hmac=f5fe24724fe05481e3841f9eb5ab8efdee0a3dd83645ae9dcf45703f525bab7b
+
+#EXTINF:-1 tvg-id="553" tvg-name="KairaliWe.in" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Wah_TV.png" group-title="Religious",We TV (Malayalam)
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://m3u-iptv.github.io/iptv/streams/WeTV.m3u8
+
+#EXTINF:-1 tvg-id="WeatherSpy.in@SD" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Weather_SPY.png" tvg-language="English" group-title="Infotainment",Weather SPY (1080p) {English}
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://jukin-weatherspy-2-in.samsung.wurl.tv/playlist.m3u8
+
+#EXTINF:-1 tvg-id="647f8d22a2fc3fadb4721685-60d4edddb2fdec002c141135" tvg-name="WildEarth" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Wild_Earth.png" tvg-language="English" group-title="Infotainment",Wild Earth (1080p) {English}
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://jmp2.uk/plex-647f8d22a2fc3fadb4721685-60d4edddb2fdec002c141135.m3u8
+
+#EXTINF:-1 tvg-id="IN460000585" tvg-name="Wild Flix" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Wild_Flix.png" tvg-language="English" group-title="Infotainment",Wild Flix (1080p) {English}
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://sis-global.prod.samsungtv.plus/v1/tvpprd/sc-merbcw141f2ka.m3u8
+
+#EXTINF:-1 tvg-id="WinTV.in@SD" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Win_TV.png" tvg-language="Tamil" group-title="News",Win TV (720p) {Tamil}
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://mumt06.tangotv.in/qYyB8fXVWINTV/index.m3u8
+
+#EXTINF:-1 tvg-id="INBD4000058T" tvg-name="WION" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Wion.png" tvg-language="English" group-title="News" ,WION (1080p) {English}
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://vg-zeefta1.akamaized.net/vglive-sk-726180/main.m3u8
+
+#EXTINF:-1 tvg-id="WorldPunjabiTV.in@SD" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/World_Punjab_HD.png" tvg-language="Punjabi" group-title="News",World Punjab (1080p) {Punjabi}
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://live1.ottlive.co.in/worldpunjabitv/worldpunjabitv/index.m3u8
+
+#EXTINF:-1 tvg-id="WOWKidz.in@Hindi" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Wow_Kidz_Hindi.png" tvg-language="Hindi" group-title="Kids",WOW Kidz (720p) {Hindi}
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://yuppparoriglin.akamaized.net/181224/smil:wowkidzhindi.smil/playlist.m3u8?hdnts=st=1735898689~exp=1835898688~acl=*~hmac=f5fe24724fe05481e3841f9eb5ab8efdee0a3dd83645ae9dcf45703f525bab7b
+
+#EXTINF:-1 tvg-id="WOWKidz.in@Tamil" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Wow_Kidz_Tamil.png" tvg-language="Tamil" group-title="Kids",WOW Kidz (720p) {Tamil}
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://yuppparoriglin.akamaized.net/181224/smil:wowkidztam.smil/playlist.m3u8?hdnts=st=1735898689~exp=1835898688~acl=*~hmac=f5fe24724fe05481e3841f9eb5ab8efdee0a3dd83645ae9dcf45703f525bab7b
+
+#EXTINF:-1 tvg-id="WOWKidz.in@Telugu" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Wow_Kidz_Telugu.png" tvg-language="Telugu" group-title="Kids",WOW Kidz (720p) {Telugu}
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://yuppparoriglin.akamaized.net/181224/smil:wowkidztelgu.smil/playlist.m3u8?hdnts=st=1735898689~exp=1835898688~acl=*~hmac=f5fe24724fe05481e3841f9eb5ab8efdee0a3dd83645ae9dcf45703f525bab7b
+
+#EXTINF:-1 tvg-id="IN46000011Q" tvg-name="XXTreme Jobs" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/XX_Treme_Jobs.png" tvg-language="Hindi" group-title="Infotainment",XXTreme Jobs (1080p) {Hindi}
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://sis-global.prod.samsungtv.plus/v1/tvpprd/sc-e1176l2ngviwl.m3u8
+
+#EXTINF:-1 tvg-id="YETMax.in@HD" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/YET_Max.png" tvg-language="Tamil" group-title="Music",YET MAX (576p) {Tamil}
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://live.yettelevision.com:5443/LiveApp/streams/yettv2.m3u8
+
+#EXTINF:-1 tvg-id="YETTV.in@HD" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/YET_TV.png" tvg-language="Tamil" group-title="Entertainment",YET TV (576p) {Tamil}
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://live.yettelevision.com:5443/LiveApp/streams/yettv.m3u8
+
 #EXTINF:-1 tvg-id="YRFMusic.in@SD" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/YRF_Music.png" tvg-language="Hindi" group-title="Music",YRF Music (1080p) {Hindi}
 https://vidaa.kableone.com/hls/live/2111218/YrfMusic/master.m3u8
 
@@ -529,6 +589,10 @@ https://dishmt.slivcdn.com/hls/live/2011641/SonyAathSD/master.m3u8?hdnea=exp=179
 #EXTINF:-1 tvg-id="SONY.BBC.EARTH.HD.in" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Sony_BBC_Earth_HD.png" tvg-language="English" group-title="SonyLIV",SONY BBC EARTH HD
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://dishmt.slivcdn.com/hls/live/2011907/SonyBBCEarthHD/master.m3u8?hdnea=exp=1794485455~acl=/*~id=40372471730344503579726952725709~hmac=19355efed4e8f497c5540a23f16e5921df97d22e6c1ff478b776ef35cd5cd255
+
+#EXTINF:-1 tvg-id="Sony.KAL.us2" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Sony_Kal.png" tvg-language="Hindi" group-title="SonyLIV",SONY KAL US (1080p)
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://wurlsonypicturestv.global.transmit.live/hls/68deeb1c0238cda82df543dd/v1/spt_sonykal_1/lg_us/latest/main/hls/playlist.m3u8
 
 #EXTINF:-1 tvg-id="ts658" tvg-name="Sony Marathi" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Sony_Marathi.png" tvg-language="Marathi" group-title="SonyLIV",SONY MARATHI
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
