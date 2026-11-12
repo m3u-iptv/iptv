@@ -236,8 +236,8 @@ https://raw.githubusercontent.com/m3u-iptv/live/main/epg.xml.gz
 <summary>Expand</summary>
 <br>
 
-• {HK1} ,
-• {IN1} ,
+#• HK1
+• IN1
 • IN2
 • IN4
 • MY1
