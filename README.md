@@ -216,7 +216,14 @@ https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/<FILENAME
 
 <details>
 <summary>Expand</summary>
-<br>
+<br> 
+  
+LINK 1
+  
+```  
+https://m3u-iptv.github.io/iptv/epg.xml.gz
+```
+LINK 2
 
 ```
 https://raw.githubusercontent.com/m3u-iptv/live/main/epg.xml.gz
