@@ -5,8 +5,6 @@ http://m3u-iptv.github.io/iptv/index.html
 ### LIVE TV ULTRA GUIDE 
 http://m3u-iptv.github.io/iptv/ultra.html
 
-### M3U-IPTV PLAYER DOWNLOAD ALL CHANNELS WORKING & EPG AUTO DOWNLOAD 
-
 ### M3U-IPTV M3U File Links 2026
 
 Indian TV Channels Total 1200.
@@ -238,19 +236,12 @@ https://raw.githubusercontent.com/m3u-iptv/live/main/epg.xml.gz
 
  
 
-• HK1
-• IN1
-• IN2
-• IN4
-• MY1
-• SG1
-• UK1
-• US2
-• Airtel Digital TV 
-• Jio TV
-• Dish TV & D2H 
-• TATA PLAY
-• SUN DIRECT
+| Name | TVG-ID | TVG-NAME | CHANNEL NAME |
+| Airtel Digital TV | Channel No | Original | Jo Bhi Ho
+| Jio TV | ch.id "144" | Colors HD | Colors HD | 
+| Dish TV & D2H | Channel No | Original | Jo Bhi Ho |
+| TATA PLAY | Ch.No "ts000" | Original | Jo Bhi Ho |
+| SUN DIRECT | Ch. No "sun000" | Original | Jo Bhi Ho |
 
 
 
