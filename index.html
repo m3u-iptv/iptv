@@ -33,47 +33,34 @@ video{width:100%;aspect-ratio:16/9;background:#000;display:block}
 </style>
 </head>
 <body>
-<header>📺 LIVE TV ULTRA PLAYER</header>
+<header>📺 LIVE TV ULTRA PLAYER <div id="istClock" style="font-size:13px;color:#fff;font-weight:normal;margin-top:4px">🕐 IST Time Loading...</div></header>
 <div class="player-wrapper">
 <video id="tv-player" controls autoplay muted playsinline></video>
 </div>
 <div id="err"></div>
 <p id="status" style="color:#aaa;margin:-10px 0 15px">Loading channels...</p>
-
-<!-- ✅ ORIGINAL ONLINE - KOI NAHI TO 0 DIKHEGA SIR -->
 <div class="online-bar">
   <div style="display:flex;gap:8px;align-items:center">
     <span class="online-dot"></span>
-    <b id="onlineCount" style="color:#fff;font-size:15px">👁️ 0 Online Dekh Rahe Hai</b>
+    <b id="onlineCount" style="color:#fff;font-size:15px">👁️ 1 Online Dekh Rahe Hai</b>
   </div>
   <span id="liveChannelName" style="color:#e50914;font-size:13px;font-weight:bold">🔴 LIVE</span>
 </div>
-
 <div class="top-btns">
 <button onclick="downloadM3U()">⬇️ M3U Download Karo</button>
 <button onclick="reloadM3U()" style="background:#222">🔄 Refresh Channels</button>
 </div>
-
 <div class="quality-bar">
   <div style="display:flex;gap:10px;align-items:center">
     <label for="qualitySelect">Quality:</label>
-    <select id="qualitySelect" onchange="changeQuality()">
-        <option value="auto" selected>Auto</option>
-    </select>
+    <select id="qualitySelect" onchange="changeQuality()"><option value="auto" selected>Auto</option></select>
   </div>
   <div class="q-info" id="qualityInfo">Auto - Internet ke hisab se khud badlega</div>
 </div>
-
 <div class="filter-container"><div class="filter-title">Languages</div><div class="filter-row" id="language-filters"></div></div>
 <div class="filter-container"><div class="filter-title">Categories</div><div class="filter-row" id="category-filters"></div></div>
 <div class="channels-section"><div class="filter-title">Available Channels</div><div class="channels-grid" id="channels-list"></div></div>
-
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-
-<!-- ✅ FIREBASE - ORIGINAL ONLINE KE LIYE - SIRF YE 2 LINE -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
-
 <script>
 let channelsData = [];
 let activeLanguage='all', activeCategory='all';
@@ -84,62 +71,50 @@ let M3U_URL = 'https://m3u-iptv.github.io/iptv/index.m3u';
 let PROXIES = ['https://corsproxy.io/?url=','https://api.allorigins.win/raw?url=','https://api.codetabs.com/v1/proxy?quest='];
 let lastM3UText = '';
 
-// ✅ ✅ ✅ YAHAN APNA FIREBASE CONFIG DAL DO SIR - BAS YAHI 1 JAGAH ✅ ✅ ✅
-const firebaseConfig = {
-  apiKey: "AAPKI_API_KEY_YAHAN",
-  authDomain: "AAPKA-PROJECT.firebaseapp.com",
-  databaseURL: "https://AAPKA-PROJECT-default-rtdb.firebaseio.com",
-  projectId: "AAPKA-PROJECT",
-  storageBucket: "AAPKA-PROJECT.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef"
-};
-// Agar Config Nahi Dala To 0 Hi Dikhega Sir - Fek Nahi Dikhega!
-
-// ✅ ✅ ✅ ORIGINAL ONLINE SYSTEM - FIREBASE WALA ✅ ✅ ✅
-let db = null;
-let myPresenceRef = null;
-let currentChannelSafeName = '';
-let firebaseOK = false;
-
-try{
-  if(firebaseConfig.apiKey !== "AAPKI_API_KEY_YAHAN"){
-    firebase.initializeApp(firebaseConfig);
-    db = firebase.database();
-    firebaseOK = true;
-  }
-}catch(e){ console.log('Firebase nahi chala:', e); }
-
-function makeSafeName(name){
-  return (name||'LIVE').replace(/[^a-zA-Z0-9]/g,'_').substring(0,60);
+// ✅ ORIGINAL IST TIME - BILKUL ASLI TIME
+function updateClock(){
+  let el=document.getElementById('istClock');
+  if(!el) return;
+  let now=new Date();
+  let ist=now.toLocaleString('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true,day:'2-digit',month:'short',year:'numeric'});
+  el.innerText='🕐 IST Time : '+ist+' | LIVE';
 }
+setInterval(updateClock,1000); updateClock();
 
-function startOnlineCounter(channelName){
-  currentChannelSafeName = makeSafeName(channelName);
-  let nameEl = document.getElementById('liveChannelName');
-  if(nameEl) nameEl.innerText = '🔴 LIVE : ' + channelName;
-
-  // Pehle wala presence hatao
-  if(myPresenceRef){ try{ myPresenceRef.remove(); }catch(e){} myPresenceRef = null; }
-
-  if(!firebaseOK || !db){
-    // Firebase nahi hai to sach me 0 dikhao - Fek mat dikhao Sir!
-    document.getElementById('onlineCount').innerText = '👁️ 0 Online Dekh Rahe Hai';
-    return;
-  }
-
-  // Main is channel pe online hu - ye add karo
-  myPresenceRef = db.ref('online/' + currentChannelSafeName).push();
-  myPresenceRef.set(true);
-  // Jab tab band karunga / net jayega to khud hat jayega - isliye 0 sahi aayega
-  myPresenceRef.onDisconnect().remove();
-
-  // Kitne log is channel pe hai - ye suno
-  db.ref('online/' + currentChannelSafeName).on('value', (snap)=>{
-    let count = snap.numChildren(); // ✅ Original Count - Koi nahi to 0
-    document.getElementById('onlineCount').innerText = '👁️ ' + count.toLocaleString('en-IN') + ' Online Dekh Rahe Hai';
-  });
+// ✅ NO KEY ONLINE - SIRF HTTPS LINK SE CHALEGA
+let currentChannelSafeName='LIVE';
+let onlineTimer=null;
+function makeSafeName(name){ return (name||'LIVE').replace(/[^a-zA-Z0-9]/g,'_').substring(0,60); }
+async function refreshOnlineCount(){
+  try{
+    let r=await fetch('https://abacus.jasoncameron.dev/info/m3u-iptv-online/'+currentChannelSafeName);
+    let j=await r.json();
+    let c=j.value||1;
+    if(c<1) c=1;
+    document.getElementById('onlineCount').innerText='👁️ '+c.toLocaleString('en-IN')+' Online Dekh Rahe Hai';
+    let card=document.getElementById('card-'+currentChannelSafeName);
+    if(card) card.innerText='👁️ '+c+' Online';
+  }catch(e){}
 }
+async function startOnlineCounter(channelName){
+  currentChannelSafeName=makeSafeName(channelName);
+  let nameEl=document.getElementById('liveChannelName');
+  if(nameEl) nameEl.innerText='🔴 LIVE : '+channelName;
+  try{
+    // Main aaya to +1
+    await fetch('https://abacus.jasoncameron.dev/hit/m3u-iptv-online/'+currentChannelSafeName);
+  }catch(e){}
+  refreshOnlineCount();
+  if(onlineTimer) clearInterval(onlineTimer);
+  onlineTimer=setInterval(refreshOnlineCount,5000);
+}
+// Band karne pe -1
+window.addEventListener('beforeunload',()=>{
+  try{
+    let url='https://abacus.jasoncameron.dev/decrement/m3u-iptv-online/'+currentChannelSafeName;
+    navigator.sendBeacon(url);
+  }catch(e){}
+});
 
 async function fetchM3U(){
   try{ let res = await fetch(M3U_URL); if(res.ok){ let t = await res.text(); if(t.includes('#EXTINF')) return t; } }catch(e){}
@@ -196,17 +171,9 @@ function loadChannels(){
   if(!filtered.length){ grid.innerHTML='<div style="color:#aaa;padding:20px;text-align:center">Is filter me koi channel nahi hai</div>'; return; }
   filtered.forEach(ch=>{
     let d=document.createElement('div'); d.className='channel-card';
-    // Card pe bhi Original dikhayenge - Firebase se live aayega
     let safe = makeSafeName(ch.name);
-    d.innerHTML=`<img src="${ch.logo}" onerror="this.src='https://via.placeholder.com/60x45?text=TV'"><span>${ch.name}</span><br><span class="card-online" id="card-${safe}">👁️ 0 Online</span>`;
+    d.innerHTML=`<img src="${ch.logo}" onerror="this.src='https://via.placeholder.com/60x45?text=TV'"><span>${ch.name}</span><br><span class="card-online" id="card-${safe}">👁️ 1 Online</span>`;
     d.onclick=()=>changeChannel(ch.url, ch); grid.appendChild(d);
-    // Har card ka original count suno
-    if(firebaseOK && db){
-      db.ref('online/' + safe).on('value', (snap)=>{
-        let el = document.getElementById('card-' + safe);
-        if(el) el.innerText = '👁️ ' + snap.numChildren() + ' Online';
-      });
-    }
   });
 }
 function showErr(msg){ let e=document.getElementById('err'); e.style.display='block'; e.innerHTML=msg; }
