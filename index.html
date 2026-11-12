@@ -30,10 +30,6 @@ video{width:100%;aspect-ratio:16/9;background:#000;display:block}
 .online-dot{width:10px;height:10px;background:#00ff00;border-radius:50%;display:inline-block;box-shadow:0 0 8px #00ff00;animation:blink 1.2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
 .card-online{font-size:11px;color:#00ff00;background:#0a2a0a;padding:3px 8px;border-radius:20px;display:inline-block;margin-top:6px}
-.epg-bar{width:90%;max-width:850px;background:#1a1a1a;border:1px solid #2d2d2d;border-radius:10px;padding:12px 14px;margin:-5px 0 15px}
-.epg-now{font-size:14px;color:#fff;line-height:1.5}
-.epg-next{font-size:13px;color:#aaa;line-height:1.5;margin-top:4px}
-.epg-time{color:#e50914;font-weight:bold}
 </style>
 </head>
 <body>
@@ -50,18 +46,9 @@ video{width:100%;aspect-ratio:16/9;background:#000;display:block}
   </div>
   <span id="liveChannelName" style="color:#e50914;font-size:13px;font-weight:bold">🔴 LIVE</span>
 </div>
-
-<!-- ✅ EPG AUTO BAR -->
-<div class="epg-bar">
-  <div class="epg-now" id="epgNow">📺 <b>Abhi :</b> <span id="epgNowText">EPG Load Ho Raha Hai... ⏳</span></div>
-  <div class="epg-next" id="epgNext">⏭️ <b>Agle :</b> <span id="epgNextText">-</span></div>
-  <div style="font-size:11px;color:#666;margin-top:6px" id="epgStatus">EPG Source: Apna epg.xml.gz</div>
-</div>
-
 <div class="top-btns">
 <button onclick="downloadM3U()">⬇️ M3U Download Karo</button>
 <button onclick="reloadM3U()" style="background:#222">🔄 Refresh Channels</button>
-<button onclick="loadEPG(true)" style="background:#222">📺 EPG Refresh</button>
 </div>
 <div class="quality-bar">
   <div style="display:flex;gap:10px;align-items:center">
@@ -74,7 +61,6 @@ video{width:100%;aspect-ratio:16/9;background:#000;display:block}
 <div class="filter-container"><div class="filter-title">Categories</div><div class="filter-row" id="category-filters"></div></div>
 <div class="channels-section"><div class="filter-title">Available Channels</div><div class="channels-grid" id="channels-list"></div></div>
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-<script src="https://cdn.jsdelivr.net/npm/pako@2.1.0/dist/pako.min.js"></script>
 <script>
 let channelsData = [];
 let activeLanguage='all', activeCategory='all';
@@ -85,11 +71,7 @@ let M3U_URL = 'https://m3u-iptv.github.io/iptv/index.m3u';
 let PROXIES = ['https://corsproxy.io/?url=','https://api.allorigins.win/raw?url=','https://api.codetabs.com/v1/proxy?quest='];
 let lastM3UText = '';
 
-// ✅ ✅ ✅ APNA EPG LINK - YAHI AAPKA epg.xml.gz HAI SIR ✅ ✅ ✅
-let EPG_URLS = [
-  'https://raw.githubusercontent.com/m3u-iptv/live/main/epg.xml.gz'
-];
-
+// ✅ ORIGINAL IST TIME - BILKUL ASLI TIME
 function updateClock(){
   let el=document.getElementById('istClock');
   if(!el) return;
@@ -99,7 +81,7 @@ function updateClock(){
 }
 setInterval(updateClock,1000); updateClock();
 
-// ✅ NO KEY ONLINE
+// ✅ NO KEY ONLINE - SIRF HTTPS LINK SE CHALEGA
 let currentChannelSafeName='LIVE';
 let onlineTimer=null;
 function makeSafeName(name){ return (name||'LIVE').replace(/[^a-zA-Z0-9]/g,'_').substring(0,60); }
@@ -118,143 +100,21 @@ async function startOnlineCounter(channelName){
   currentChannelSafeName=makeSafeName(channelName);
   let nameEl=document.getElementById('liveChannelName');
   if(nameEl) nameEl.innerText='🔴 LIVE : '+channelName;
-  try{ await fetch('https://abacus.jasoncameron.dev/hit/m3u-iptv-online/'+currentChannelSafeName); }catch(e){}
+  try{
+    // Main aaya to +1
+    await fetch('https://abacus.jasoncameron.dev/hit/m3u-iptv-online/'+currentChannelSafeName);
+  }catch(e){}
   refreshOnlineCount();
   if(onlineTimer) clearInterval(onlineTimer);
   onlineTimer=setInterval(refreshOnlineCount,5000);
 }
+// Band karne pe -1
 window.addEventListener('beforeunload',()=>{
-  try{ let url='https://abacus.jasoncameron.dev/decrement/m3u-iptv-online/'+currentChannelSafeName; navigator.sendBeacon(url); }catch(e){}
+  try{
+    let url='https://abacus.jasoncameron.dev/decrement/m3u-iptv-online/'+currentChannelSafeName;
+    navigator.sendBeacon(url);
+  }catch(e){}
 });
-
-// ✅ ✅ ✅ EPG AUTO DOWNLOAD SYSTEM ✅ ✅ ✅
-let epgMap = {}; // channelId -> [{start,stop,title,desc}]
-let epgNameMap = {}; // channel display name lower -> channelId
-let currentChannelObj = null;
-let epgLoaded = false;
-
-function parseEPGTime(s){
-  if(!s) return null;
-  // 20261112103000 +0530  ya  20261112103000
-  try{
-    s=s.trim();
-    let datePart=s.substring(0,14);
-    let tzPart=s.substring(15).trim(); // +0530
-    let y=datePart.substring(0,4), mo=datePart.substring(4,6), d=datePart.substring(6,8), h=datePart.substring(8,10), mi=datePart.substring(10,12), sec=datePart.substring(12,14);
-    if(tzPart && (tzPart[0]==='+'||tzPart[0]==='-')){
-      let sign=tzPart[0]==='+'?1:-1;
-      let th=parseInt(tzPart.substring(1,3)||'0'), tm=parseInt(tzPart.substring(3,5)||'0');
-      let utcMs = Date.UTC(y,mo-1,d,h,mi,sec) - sign*(th*60+tm)*60000;
-      return new Date(utcMs);
-    }
-    return new Date(y+'-'+mo+'-'+d+'T'+h+':'+mi+':'+sec);
-  }catch(e){ return null; }
-}
-function fmtTime(dt){
-  if(!dt) return '';
-  return dt.toLocaleString('en-IN',{timeZone:'Asia/Kolkata',hour:'2-digit',minute:'2-digit',hour12:true});
-}
-async function loadEPG(manual){
-  if(epgLoaded && !manual) return;
-  document.getElementById('epgNowText').innerText = 'EPG Download Ho Raha Hai... ⏳';
-  let xmlText='';
-  for(let url of EPG_URLS){
-    try{
-      let res = await fetch(url);
-      if(!res.ok) continue;
-      let buf = await res.arrayBuffer();
-      let bytes = new Uint8Array(buf);
-      // .gz hai to pako se kholo, nahi to direct text
-      try{
-        if(bytes[0]===0x1f && bytes[1]===0x8b){
-          let out = pako.ungzip(bytes);
-          xmlText = new TextDecoder().decode(out);
-        } else {
-          xmlText = new TextDecoder().decode(bytes);
-        }
-      }catch(e){ xmlText = new TextDecoder().decode(bytes); }
-      if(xmlText && xmlText.includes('<programme')) break;
-      if(xmlText && xmlText.includes('<tv')) break;
-    }catch(e){}
-  }
-  if(!xmlText || !xmlText.includes('<programme')){
-    document.getElementById('epgNowText').innerText = 'EPG Nahi Mila Sir! GitHub Me epg.xml.gz Upload Karo!';
-    document.getElementById('epgStatus').innerText = 'EPG Nahi Mila - epg.xml.gz Check Karo';
-    return;
-  }
-  try{
-    let parser = new DOMParser();
-    let xml = parser.parseFromString(xmlText,'text/xml');
-    epgMap={}; epgNameMap={};
-    // channel naam map
-    xml.querySelectorAll('channel').forEach(ch=>{
-      let id=ch.getAttribute('id')||'';
-      let dn=ch.querySelector('display-name');
-      if(dn && id){ epgNameMap[dn.textContent.trim().toLowerCase()]=id; }
-    });
-    xml.querySelectorAll('programme').forEach(p=>{
-      let ch=p.getAttribute('channel')||'';
-      let st=parseEPGTime(p.getAttribute('start'));
-      let sp=parseEPGTime(p.getAttribute('stop'));
-      let tEl=p.querySelector('title'); let title=tEl?tEl.textContent.trim():'Program';
-      let dEl=p.querySelector('desc'); let desc=dEl?dEl.textContent.trim():'';
-      if(!epgMap[ch]) epgMap[ch]=[];
-      epgMap[ch].push({start:st,stop:sp,title,desc});
-    });
-    for(let k in epgMap){ epgMap[k].sort((a,b)=>a.start-b.start); }
-    epgLoaded=true;
-    document.getElementById('epgStatus').innerText = 'EPG Auto Load Ho Gaya ✅ | Total Channels: '+Object.keys(epgMap).length;
-    if(currentChannelObj) updateEPG(currentChannelObj);
-    else document.getElementById('epgNowText').innerText='Channel Chuno Sir!';
-  }catch(e){
-    document.getElementById('epgNowText').innerText='EPG Parse Nahi Hua Sir!';
-  }
-}
-function updateEPG(ch){
-  currentChannelObj=ch;
-  if(!ch){ return; }
-  if(!epgLoaded){
-    document.getElementById('epgNowText').innerText='EPG Load Ho Raha Hai...';
-    return;
-  }
-  let now=new Date();
-  let ids=[];
-  if(ch.tvgId) ids.push(ch.tvgId);
-  if(ch.name) ids.push(ch.name);
-  let lower=ch.name?ch.name.toLowerCase():'';
-  if(epgNameMap[lower]) ids.push(epgNameMap[lower]);
-  // naam se thoda match bhi try karo
-  for(let key in epgNameMap){
-    if(key.includes(lower) || lower.includes(key)){ ids.push(epgNameMap[key]); }
-  }
-  let list=null;
-  for(let id of ids){ if(epgMap[id] && epgMap[id].length){ list=epgMap[id]; break; } }
-  if(!list){
-    document.getElementById('epgNowText').innerText='Is Channel Ka Program Info Nahi Mila Sir!';
-    document.getElementById('epgNextText').innerText='-';
-    return;
-  }
-  let cur=null, nxt=null;
-  for(let i=0;i<list.length;i++){
-    if(now>=list[i].start && now<list[i].stop){ cur=list[i]; nxt=list[i+1]||null; break; }
-    if(now<list[i].start){ nxt=list[i]; break; }
-  }
-  if(cur){
-    document.getElementById('epgNowText').innerText = cur.title + '  ('+fmtTime(cur.start)+' - '+fmtTime(cur.stop)+')' + (cur.desc? ' | '+cur.desc.substring(0,80):'');
-  } else if(nxt){
-    document.getElementById('epgNowText').innerText='Abhi Koi Program Nahi - Agla Program Neeche Hai';
-  } else {
-    document.getElementById('epgNowText').innerText='Aaj Ka Program Khatam Ho Gaya Sir!';
-  }
-  if(nxt){
-    document.getElementById('epgNextText').innerText = nxt.title + '  ('+fmtTime(nxt.start)+' - '+fmtTime(nxt.stop)+')';
-  } else {
-    document.getElementById('epgNextText').innerText='-';
-  }
-}
-// Har 1 minute me EPG time update karo, Har 30 minute me EPG dobara download karo
-setInterval(()=>{ if(currentChannelObj) updateEPG(currentChannelObj); },60000);
-setInterval(()=>{ loadEPG(true); },30*60*1000);
 
 async function fetchM3U(){
   try{ let res = await fetch(M3U_URL); if(res.ok){ let t = await res.text(); if(t.includes('#EXTINF')) return t; } }catch(e){}
@@ -279,17 +139,15 @@ async function loadFromM3U(){
     if(line.startsWith('#EXTINF')){
       let name = line.split(',').pop()||'Channel';
       let logo = (line.match(/tvg-logo="([^"]*)"/)||[])[1]||'';
-      let tvgId = (line.match(/tvg-id="([^"]*)"/)||[])[1]||'';
       let lang = (line.match(/tvg-language="([^"]*)"/)||[])[1] || 'Others';
       let cat = (line.match(/group-title="([^"]*)"/)||[])[1] || 'Entertainment';
       if(lang==='Others'){ let m=name.match(/\{([^}]+)\}/); if(m) lang=m[1]; }
-      cur={name,logo,lang,cat,url:'',userAgent:pendingUA||DEFAULT_UA,tvgId};
+      cur={name,logo,lang,cat,url:'',userAgent:pendingUA||DEFAULT_UA};
       pendingUA='';
     } else if(line.startsWith('http') && cur){ cur.url=line; channelsData.push(cur); cur=null; }
   }
   document.getElementById('status').innerText = channelsData.length + ' Channels Auto Load Ho Gaye ✅';
   buildFilters(); loadChannels();
-  loadEPG(false);
   if(channelsData.length) changeChannel(channelsData[0].url, channelsData[0]);
 }
 function reloadM3U(){ channelsData=[]; loadFromM3U(); }
@@ -322,7 +180,6 @@ function showErr(msg){ let e=document.getElementById('err'); e.style.display='bl
 function hideErr(){ document.getElementById('err').style.display='none'; }
 function changeChannel(url, ch){
   startOnlineCounter(ch ? ch.name : 'LIVE TV');
-  updateEPG(ch);
   let qs=document.getElementById('qualitySelect');
   if(qs) qs.innerHTML='<option value="auto" selected>Auto</option>';
   let qi=document.getElementById('qualityInfo');
