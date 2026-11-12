@@ -250,6 +250,22 @@ https://raw.githubusercontent.com/m3u-iptv/live/main/epg.xml.gz
 • TATA PLAY
 • SUN DIRECT
 
+
+
+## 🌍 Server Country List
+
+| Code | Country Name |
+| --- | --- |
+| HK1 | Hong Kong |
+| IN1 | India |
+| IN2 | India |
+| IN4 | India |
+| MY1 | Malaysia |
+| SG1 | Singapore |
+| UK1 | United Kingdom |
+| US2 | United States / USA |
+
+
 </details>
 
 
