@@ -212,7 +212,7 @@ https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/<FILENAME
 ```
 </details>
 
-### EPG ORIGINAL URL AUTO UPDATE 
+### M3U-IPTV EPG ORIGINAL URL AUTO UPDATE 
 
 <details>
 <summary>Expand</summary>
@@ -230,13 +230,15 @@ https://raw.githubusercontent.com/m3u-iptv/live/main/epg.xml.gz
 ```
 </details>
 
-#### EPG Country Code & Web TV
+### M3U IPTV TVG-ID LIST
 
 <details>
 <summary>Expand</summary>
 <br>
 
-#• HK1
+ 
+
+• HK1
 • IN1
 • IN2
 • IN4
@@ -254,16 +256,16 @@ https://raw.githubusercontent.com/m3u-iptv/live/main/epg.xml.gz
 
 ## 🌍 Server Country List
 
-| Code | Country Name |
-| --- | --- |
-| HK1 | Hong Kong |
-| IN1 | India |
-| IN2 | India |
-| IN4 | India |
-| MY1 | Malaysia |
-| SG1 | Singapore |
-| UK1 | United Kingdom |
-| US2 | United States / USA |
+| Code | Country Name | TVG-ID 
+| --- | --- | --- |
+| HK1 | Hong Kong | ZeeTV.hk |
+| IN1 | India | Zee.TV.in |
+| IN2 | India | --- |
+| IN4 | India | ZEE.TV.in |
+| MY1 | Malaysia | Zee.TV.My |
+| SG1 | Singapore | Zee.TV.sg |
+| UK1 | United Kingdom | Zee.TV.uk |
+| US2 | United States / USA | Zee.TV.us2 |
 
 
 </details>
