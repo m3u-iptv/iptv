@@ -409,6 +409,74 @@ https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/a70323c56ac647c2a8c8fc34e4c73912/in
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/c89fa6d6f5864ac29670d6f91cb7e32a/index.m3u8
 
+#EXTINF:-1 tvg-id="E24.in" tvg-name="E24" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/E24.png" tvg-language="Hindi" group-title="Music",E24
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://amg13643-amg13643c2-amgplt0016.playout.now3.amagi.tv/playlist/amg13643-amg13643c2-amgplt0016/playlist.m3u8
+
+#EXTINF:-1 tvg-id="E24.in" tvg-name="E24" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/E24.png" tvg-language="Hindi" group-title="Music",E24
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://indianews-yupptv.vgcdn.net/vglive-sk-681466/playlist.m3u8
+
+#EXTINF:-1 tvg-id="ENTER10.BANGLA.in" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Enterr_10_Bangla.png" tvg-language="Bengali" group-title="Entertainment",Enterr 10 Bangla (1080p)
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://m3u-iptv.github.io/iptv/streams/Enter10Bangla.m3u8
+
+#EXTINF:-1 tvg-id="NazaraTV.in" tvg-name="Nazara TV.in" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Epic_Bharat.png" tvg-language="Hindi" group-title="Entertainment",EPIC BHARAT
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://mumt06.tangotv.in/qYyB8fXVEPICTV/index.m3u8
+
+#EXTINF:-1 tvg-id="IN1700011V7" tvg-name="Epic Bharat" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Epic_Bharat.png" tvg-language="Hindi" group-title="Entertainment",EPIC BHARAT DIGITAL
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://epicbharat.cdn.runn.tv/master.m3u8
+
+#EXTINF:-1 tvg-id="FilamchiBhojpuri.in" tvg-name="Filamchi Bhojpuri.in" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Epic_Bhojpuri.png" tvg-language="Bhojpuri" group-title="Movies",EPIC BHOJPURI
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://mumt01.tangotv.in/O5aw8Zn3EPICBHOJPURI/index.m3u8
+
+#EXTINF:-1 tvg-id="IN800020ZZ" tvg-name="Epic Bhojpuri" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Epic_Bhojpuri.png" tvg-language="Bhojpuri" group-title="Movies",EPIC BHOJPURI DIGITAL
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://epicbhojpuri.cdn.runn.tv/master.m3u8
+
+#EXTINF:-1 tvg-id="IN8000171I" tvg-name="Epic Crimes" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Epic_Crimes.png" tvg-language="Hindi" group-title="Entertainment",EPIC CRIMES
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://epiccrimes.cdn.runn.tv/master.m3u8
+
+#EXTINF:-1 tvg-id="Gubbare.in" tvg-name="Epic Kids" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Epic_Kids.png" tvg-language="Multi-Lang" group-title="Kids",EPIC KIDS
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+http://cdn.pishow.tv/live/309/master.m3u8
+
+#EXTINF:-1 tvg-id="IN800021X7" tvg-name="Epic Kids" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Epic_Kids.png" tvg-language="Hindi" group-title="Kids",EPIC KIDS DIGITAL
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://epickids.cdn.runn.tv/master.m3u8
+
+#EXTINF:-1 tvg-id="dish463" tvg-name="Showbox" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Epic_Music.png" tvg-language="Hindi" group-title="Music",EPIC MUSIC
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://streams.tangotv.in/EPICMUSIC/ORIGIN/tracks-v1a1/mono.m3u8
+
+#EXTINF:-1 tvg-id="IN8000196E" tvg-name="Epic Music" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Epic_Music.png" tvg-language="Hindi" group-title="Music",EPIC MUSIC DIGITAL
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://epicmusic.cdn.runn.tv/master.m3u8
+
+#EXTINF:-1 tvg-id="Ishara.TV.in" tvg-name="Ishaara TV" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Epic_Parivar.png" tvg-language="Hindi" group-title="Entertainment",EPIC PARIVAR
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+http://cdn.pishow.tv/live/313/master.m3u8
+
+#EXTINF:-1 tvg-id="Epic.in" tvg-name="Epic TV" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Epic_TV.png" tvg-language="Hindi" group-title="Entertainment",EPIC TV
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+http://cdn.pishow.tv/live/286/master.m3u8
+
+#EXTINF:-1 tvg-id="IN17000109O" tvg-name="Epic TV" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Epic_TV.png" tvg-language="Hindi" group-title="Entertainment",EPIC TV DIGITAL
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://epictv.cdn.runn.tv/master.m3u8
+
+#EXTINF:-1 tvg-id="ET.Now.in" tvg-name="ET Now" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/ET_Now.png"  tvg-language="English" group-title="News",ET NOW
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://dztlhgid9me95.cloudfront.net/live-tv/Vidgyor/etnow/etnow_master.m3u8
+
+#EXTINF:-1 tvg-id="ET.Now.Swadesh.in" tvg-name="ET Now Swadesh" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/ET_Now_Swadesh.png" tvg-language="Hindi" group-title="News",ET NOW SWADESH
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+http://cdn.pishow.tv/live/1111/master.m3u8
+
 #EXTINF:-1 tvg-id="SONY.AATH.in" tvg-name="Sony Aath" tvg-logo="https://m3u-iptv.github.io/iptv/images/Sony_Aath.png" tvg-language="Bengali" group-title="Entertainment",SONY AATH
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 http://cdn.pishow.tv/live/352/master.m3u8
@@ -539,7 +607,7 @@ http://cdn.pishow.tv/live/325/master.m3u8
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 http://27.116.22.53:5001/live/873.m3u8
 
-#EXTINF:-1 tvg-id="Sony.Yay.Telugu.in" tvg-name="Sony Yay Telugu" tvg-logo="https://m3u-iptv.github.io/iptv/images/Sony_Yay_Telugu.png" tvg-language="Tamil" group-title="Kids",SONY YAY! TELUGU
+#EXTINF:-1 tvg-id="Sony.Yay.Telugu.in" tvg-name="Sony Yay Telugu" tvg-logo="https://m3u-iptv.github.io/iptv/images/Sony_Yay_Telugu.png" tvg-language="Telugu" group-title="Kids",SONY YAY! TELUGU
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 http://27.116.22.53:5001/live/874.m3u8
 
