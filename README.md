@@ -1,241 +1,37 @@
-### LIVE TV ULTRA PLAYER 
-
-https://m3u-iptv.github.io/iptv/index.html
-
-
-### M3U-IPTV M3U File Links 2026
-
-Indian TV Channels Total 1200.
-
-• Auto update epg
-
-<details>
-<summary>Expand</summary>
-<br>
-
-```
-https://m3u-iptv.github.io/live/index.m3u
-```
-
-</details>
-
-
-### Grouped By Category
-
-Indian TV Channels.
-
-<details>
-<summary>Expand</summary>
-<br>
-
-```
-https://m3u-iptv.github.io/live/index.category.m3u
-```
-
-Same thing, but split up into separate files:
-
-<!-- prettier-ignore -->
-<table>
-  <thead>
-    <tr><th align="left">Category</th><th align="left">Channels</th><th align="left">Playlist</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Entertainment</td><td align="right">0</td><td nowrap><code>https://m3u-iptv.github.io/live/categories/entertainment.m3u</code></td></tr>
-    <tr><td>Movies</td><td align="right">0</td><td nowrap><code>https://m3u-iptv.github.io/live/categories/movies.m3u</code></td></tr>
-    <tr><td>Music</td><td align="right">0</td><td nowrap><code>https://m3u-iptv.github.io/live/categories/music.m3u</code></td></tr>
-    <tr><td>Kids</td><td align="right">0</td><td nowrap><code>https://m3u-iptv.github.io/live/categories/kids.m3u</code></td></tr>
-    <tr><td>News</td><td align="right">0</td><td nowrap><code>https://m3u-iptv.github.io/live/categories/news.m3u</code></td></tr>
-    <tr><td>Sports</td><td align="right">0</td><td nowrap><code>https://m3u-iptv.github.io/live/categories/sports.m3u</code></td></tr>
-    <tr><td>Infotainment</td><td align="right">0</td><td nowrap><code>https://m3u-iptv.github.io/live/categories/infotainment.m3u</code></td></tr>
-    <tr><td>Lifestyle</td><td align="right">0</td><td nowrap><code>https://m3u-iptv.github.io/live/categories/Lifestyle.m3u</code></td></tr>
-    <tr><td>Religious</td><td align="right">0</td><td nowrap><code>https://m3u-iptv.github.io/live/categories/religious.m3u</code></td></tr>
-    <tr><td>Education</td><td align="right">0</td><td nowrap><code>https://m3u-iptv.github.io/live/categories/education.m3u</code></td></tr>
-    <tr><td>Others</td><td align="right">0</td><td nowrap><code>https://m3u-iptv.github.io/live/categories/others.m3u</code></td></tr>
-    <tr><td>General</td><td align="right">0</td><td nowrap><code>https://m3u-iptv.github.io/live/categories/general.m3u</code></td></tr>
-    <tr><td>Travel</td><td align="right">0</td><td nowrap><code>https://m3u-iptv.github.io/live/categories/travel.m3u</code></td></tr>
-    <tr><td>Weather</td><td align="right"></td><td nowrap><code>https://m3u-iptv.github.io/live/categories/weather.m3u</code></td></tr>
-  </tbody>
-</table>
-
-</details>
-
-### Grouped By Language
-
-Indian TV Channels.
-
-<details>
-<summary>Expand</summary>
-<br>
-
-```
-https://m3u-iptv.github.io/live/index.language.m3u
-```
-
-All Languages M3U
-
-<!-- prettier-ignore -->
-<table>
-  <thead>
-    <tr><th align="left">Language</th><th align="left">Channels</th><th align="left">Playlist</th></tr>
-  </thead>
-  <tbody>
-    <tr><td align="left">Assamese</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/asm.m3u</code></td></tr>
-    <tr><td align="left">Bengali</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/ben.m3u</code></td></tr>
-    <tr><td align="left">Bhojpuri</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/bho.m3u</code></td></tr>
-    <tr><td align="left">English</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/eng.m3u</code></td></tr>
-    <tr><td align="left">Gujarati</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/guj.m3u</code></td></tr>
-    <tr><td align="left">Haryanvi</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/har.m3u</code></td></tr>
-    <tr><td align="left">Hindi</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/hin.m3u</code></td></tr>
-    <tr><td align="left">Kannada</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/kan.m3u</code></td></tr>
-    <tr><td align="left">Malayalam</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/mal.m3u</code></td></tr>
-    <tr><td align="left">Marathi</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/mar.m3u</code></td></tr>
-    <tr><td align="left">Mizo</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/miz.m3u</code></td></tr>
-    <tr><td align="left">Nepali</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/nep.m3u</code></td></tr>
-    <tr><td align="left">Odia & Oriya</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/odi.m3u</code></td></tr>
-    <tr><td align="left">Punjabi</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/pun.m3u</code></td></tr>
-    <tr><td align="left">Rajasthani</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/raj.m3u</code></td></tr>
-    <tr><td align="left">Tamil</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/tam.m3u</code></td></tr>
-    <tr><td align="left">Telugu</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/tel.m3u</code></td></tr>
-    <tr><td align="left">Urdu</td><td align="right">0</td><td align="left" nowrap><code>https://m3u-iptv.github.io/live/languages/urd.m3u</code></td></tr>
-    <tr><td align="left">Others</td><td align="right">0</td><td align="left" nowrap><code>https://iptv-org.github.io/iptv/languages/oth.m3u</code></td></tr>
-  </tbody>
-</table>
-
-</details>
-
-### Grouped By Language Name List
-
-All Languages Name List.
-
-<details>
-<summary>Expand</summary>
-<br>
-
-1. Assamese (অসমীয়া)
-2. Bengali (বাংলা)
-3. Bhojpuri (भोजपुरी)
-4. English (English)
-5. Gujarati (ગુજરાતી)
-6. Haryanvi (हरियाणवी)
-7. Hindi (हिन्दी)
-8. Kannada (ಕನ್ನಡ)
-9. Malayalam (മലയാളം)
-10. Marathi (मराठी)
-11. Mizo (Mizo)
-12. Nepali (नेपाली)
-13. Odia & Oriya (ଓଡ଼ିଆ)
-14. Punjabi (ਪੰਜਾਬੀ)
-15. Rajasthani (राजस्थानी)
-16. Tamil (தமிழ்)
-17. Telugu (తెలుగు)
-18. Urdu (उर्दू)
-19. Others (others)
-
-
-</details>
-
-
-
-###  M3U8 Streams Link Demo
-
-<details>
-<summary>Expand</summary>
-<br>
-
-Channels Nemes `<FILENAME>` [streams](streams) folder.
-
-```
-https://raw.githubusercontent.com/m3u-iptv/live/main/streams/<FILENAME>.m3u8
-```
-
-</details>
-
-### M3U-IPTV Player Apps Download
-
-<details>
-<summary>Expand</summary>
-<br>
-
-1.Original Auto Update Version Click Link Auto Apps Download.
-
-https://cdn.m3u-ip.tv/latest-android.apk
-
-2.Original Not Update Version
-Click Link Auto Apps Download.
-
-https://github.com/m3u-iptv/live/raw/refs/heads/main/M3U-IPTV-PLAYER-latest-android.apk
-
-</details>
-
-### Network Stream Player Apps Download
-
-<details>
-<summary>Expand</summary>
-<br>
-
-1.Original Not Update Version Click Link Auto Apps Download.
-
-https://github.com/m3u-iptv/live/raw/refs/heads/main/network-stream-video-player-4-4.apk
-
-```
-https://github.com/m3u-iptv/live/raw/refs/heads/main/Network-Stream-Player-4-4.apk
-```
-
-</details>
-
-### Images Link Demo 
-
-<details>
-<summary>Expand</summary>
-<br>
-
-Click to link Turn on.
-
-https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/10_TV.png
-
-```
-https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/10_TV.png
-```
-
-https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/<FILENAME>.png
-
-```
-https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/<FILENAME>.png
-```
-</details>
-
-### EPG ORIGINAL URL AUTO UPDATE 
-
-<details>
-<summary>Expand</summary>
-<br>
-
-```
-https://raw.githubusercontent.com/m3u-iptv/live/main/epg.xml.gz
-```
-</details>
-
-#### EPG Country Code & Web TV
-
-<details>
-<summary>Expand</summary>
-<br>
-
-• HK1
-• IN1
-• IN2
-• IN4
-• MY1
-• SG1
-• UK1
-• US2
-• Airtel Digital TV 
-• Jio TV
-• Dish TV & D2H 
-• TATA PLAY
-• SUN DIRECT
-
-</details>
-
-
-
+### 📺 LIVE TV ULTRA PLAYER
+
+**India Ka Sabse Fast & Simple LIVE TV Player - No Key, No Login, Sirf Link Se Chalega!**
+
+🔴 **LIVE TV ULTRA PLAYER:** https://m3u-iptv.github.io/iptv/index.html
+
+---
+
+## ✨ Features - Kya Kya Hai Sir?
+
+| Feature | Details |
+| --- | --- |
+| 🕐 **IST Time LIVE** | Bilkul Asli Indian Time - Har Second Update Hoga |
+| 👁️ **Real Online Count** | Kitne Log Dekh Rahe Hai - Bilkul Real, No Fake |
+| 📺 **EPG Auto** | Abhi Kya Chal Raha Hai + Agle Kya Aayega - Auto Load |
+| ⬇️ **M3U Auto Download** | Channels Khud-Ba-Khud Load Honge |
+| 🎞️ **Quality Selector** | Auto / 1080p / 720p / 480p - Internet Ke Hisab Se |
+| 🌍 **Country Server** | HK1 • IN1 • IN2 • IN4 • MY1 • SG1 • UK1 • US2 |
+| 📱 **Mobile Friendly** | Mobile + Laptop + TV Sab Me Chalega |
+| 🔄 **Auto Refresh** | EPG Har 30 Minute Me Khud Refresh Hoga |
+
+---
+
+## 🌍 Server Country List
+
+| Code | Country Name |
+| --- | --- |
+| HK1 | Hong Kong |
+| IN1 | India |
+| IN2 | India |
+| IN4 | India |
+| MY1 | Malaysia |
+| SG1 | Singapore |
+| UK1 | United Kingdom |
+| US2 | United States / USA |
+
+---
