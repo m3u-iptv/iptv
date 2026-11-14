@@ -7,9 +7,9 @@
 <style>
 body{font-family:'Segoe UI',Arial,sans-serif;background:#0f0f0f;color:#fff;margin:0;padding:0;display:flex;flex-direction:column;align-items:center}
 header{width:100%;background:#1f1f1f;padding:15px 0;text-align:center;font-size:24px;font-weight:bold;color:#e50914;position:sticky;top:0;z-index:10}
-.player-wrapper{width:90%;max-width:850px;margin:20px 0;position:relative;overflow:hidden;border-radius:12px;background:#000}
-video{width:100%;aspect-ratio:16/9;background:#000;display:block}
-.filter-container{width:90%;max-width:850px;margin-bottom:20px}
+.player-wrapper{width:100%;max-width:100%;margin:0 0 10px 0;position:relative;overflow:hidden;border-radius:0;background:#000}
+video{width:100%;height:230px;background:#000;display:block;object-fit:contain}
+.filter-container{width:90%;max-width:750px;margin-bottom:20px}
 .filter-title{font-size:14px;text-transform:uppercase;color:#aaa;margin-bottom:8px;letter-spacing:1px}
 .filter-row{display:flex;gap:10px;overflow-x:auto;padding-bottom:10px}
 .filter-btn{background:#222;color:#ccc;border:1px solid #444;padding:8px 16px;border-radius:20px;cursor:pointer;white-space:nowrap}
@@ -24,17 +24,17 @@ video{width:100%;aspect-ratio:16/9;background:#000;display:block}
 .online-dot{width:10px;height:10px;background:#00ff00;border-radius:50%;display:inline-block;box-shadow:0 0 8px #00ff00;animation:blink 1.2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
 .card-online{font-size:11px;color:#00ff00;background:#0a2a0a;padding:3px 8px;border-radius:20px;display:inline-block;margin-top:6px}
-/* ✅ QUALITY - CHOTA AUR MAST - PILL STYLE */
-.quality-bar{width:90%;max-width:850px;background:#161616;border:1px solid #2a2a2a;border-radius:50px;padding:6px 12px;display:flex;gap:8px;align-items:center;justify-content:center;margin:-5px 0 15px}
+.quality-bar{width:90%;max-width:850px;background:#161616;border:1px solid #2a2a2a;border-radius:50px;padding:7px 12px;display:flex;gap:8px;align-items:center;justify-content:center;margin:-5px 0 15px;flex-wrap:wrap}
 .quality-bar label{font-size:12px;font-weight:bold;color:#aaa}
 .quality-bar select{background:#222;color:#fff;border:1px solid #444;padding:5px 10px;border-radius:20px;font-size:12px;outline:none;cursor:pointer;min-width:90px}
-.quality-bar .q-info{font-size:11px;color:#888;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:160px}
+.quality-bar .q-info{font-size:11px;color:#888;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:130px}
+.total-chan{font-size:12px;color:#00ff00;font-weight:bold;white-space:nowrap;background:#0a2a0a;border:1px solid #1a4a1a;padding:4px 10px;border-radius:20px}
 </style>
 </head>
 <body>
 <header>📺 LIVE TV ULTRA PLAYER <div id="istClock" style="font-size:13px;color:#fff;font-weight:normal;margin-top:4px">🕐 IST Time Loading...</div></header>
 <div class="player-wrapper">
-<video id="tv-player" controls autoplay muted playsinline></video>
+<video id="tv-player" controls autoplay playsinline></video>
 </div>
 <div id="err"></div>
 <p id="status" style="color:#aaa;margin:-10px 0 15px">Loading channels...</p>
