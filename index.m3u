@@ -1,5 +1,8 @@
 #EXTM3U x-tvg-url="https://m3u-iptv.github.io/iptv/epg.xml.gz" catchup-type="shift"
 
+#EXTINF:-1 tvg-id="ts267" tvg-name="And Pictures HD" tvg-logo="https://m3u-iptv.github.io/iptv/images/TataPlay.png" tvg-language="Hindi" group-title="Tata Play",TATA PLAY
+https://m3u-iptv.github.io/iptv/streams/TataPlay.m3u8
+
 #EXTINF:-1 tvg-id="ts267" tvg-name="And Pictures HD" tvg-logo="https://m3u-iptv.github.io/iptv/images/%26Pictures_HD.png" tvg-language="Hindi" group-title="Movies",&Pictures HD
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 http://cdn.pishow.tv/live/1578/master.m3u8
