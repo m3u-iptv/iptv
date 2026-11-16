@@ -1323,6 +1323,18 @@ https://cdn2.in/SteelbirdMusicTVhls/live.m3u8
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://ott.livelegitpro.in/sudarshannews/sudarshannews/tracks-v1a1/index.m3u8
 
+#EXTINF:-1 tvg-id="SwastikStories.in" tvg-name="Swastik Stories" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Swastik_Stories.png" tvg-language="Hindi" group-title="Entertainment",SWASTIK STORIES
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://amg14122-amg14122c1-amgplt0173.playout.now3.amagi.tv/ts-eu-w1-n2/playlist/amg14122-amg14122c1-amgplt0173/playlist.m3u8
+
+#EXTINF:-1 tvg-id="IN25000020M" tvg-name="The Jungle Book" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/The_Jungle_Book.png" tvg-language="Hindi" group-title="Kids",THE JUNGLE BOOK
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://sis-global.prod.samsungtv.plus/v1/tvpprd/sc-ejho8u2ccl6im.m3u8
+
+#EXTINF:-1 tvg-id="IN3800002VK" tvg-name="The Lallantop" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/The_Lallantop.png" tvg-language="Hindi" group-title="Entertainment",THE LALLANTOP
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://sis-global.prod.samsungtv.plus/v1/tvpprd/sc-81hia2b2s5q4n.m3u8
+
 #EXTINF:-1 tvg-id="IN38000072R" tvg-name="The Movie Club" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/The_Movie_Club.png" tvg-language="Hindi" group-title="Movies",THE MOVIE CLUB 
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://sis-global.prod.samsungtv.plus/v1/tvpprd/sc-mp2ar4ca425xo.m3u8
