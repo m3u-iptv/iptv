@@ -780,11 +780,11 @@ http://m3u-iptv.github.io/iptv/streams/RepublicTV.m3u8
 
 #EXTINF:-1 tvg-id="2750" tvg-name="Saga Music" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Saga_Music.png" tvg-language="Punjabi" group-title="Music",SAGA MUSIC HD
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
-http://m3u-iptv.github.io/iptv/streams/SagaMusicHD1.m3u8
+https://vidaa.kableone.com/hls/live/2111218/SagaMusic/master.m3u8
 
 #EXTINF:-1 tvg-id="2751" tvg-name="Saga Music Haryanvi" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Saga_Music_Haryanvi.png" tvg-language="Haryanvi" group-title="Music",SAGA MUSIC HARYANVI HD
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
-http://m3u-iptv.github.io/iptv/streams/SagaMusicHaryanviHD.m3u8
+https://amg01412-xiaomiasia-sagamusicharyanvi-xiaomi-0v34j.amagi.tv/playlist/amg01412-xiaomiasia-sagamusicharyanvi-xiaomi/playlist.m3u8
 
 #EXTINF:-1 tvg-id="SandeshNews.in@SD" tvg-logo="https://dtil.tmsimg.com/assets/s143755_ld_h15_aa.png?lock=720x540" tvg-language="Gujarati" group-title="News",SANDESH NEWS
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
@@ -792,21 +792,21 @@ https://mumt01.tangotv.in/O5aw8Zn3SANDESHNEWS/index.m3u8
 
 #EXTINF:-1 tvg-id="INBD4700018T7" tvg-name="Sangeet Bangla" tvg-logo="https://dtil.tmsimg.com/assets/GNLZZGG00211H7T.png?lock=720x540" tvg-language="Bengali" group-title="Music",SANGEET BANGLA HD
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
-http://m3u-iptv.github.io/iptv/streams/SangeetBangla.m3u8
+https://amg00416-amg00416c8-samsung-in-3261.playouts.now.amagi.tv/playlist/amg00416-travelxp-sangeetbangla-samsungin/playlist.m3u8
 
 #EXTINF:-1 tvg-id="INBD4700018T7" tvg-name="Sangeet Bangla" tvg-logo="https://dtil.tmsimg.com/assets/GNLZZGG00211H7T.png?lock=720x540" tvg-language="Bengali" group-title="Music",SANGEET BANGLA
 http://cdn.pishow.tv/ott/live/1143/master.m3u8
 
 #EXTINF:-1 tvg-id="INBD4700017SL" tvg-name="Sangeet Bhojpuri" tvg-logo="https://dtil.tmsimg.com/assets/s143757_ld_h15_aa.png?lock=720x540" tvg-language="Bhojpuri" group-title="Music",SANGEET BHOJPURI HD
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
-http://m3u-iptv.github.io/iptv/streams/SangeetBhojpuri.m3u8
+https://amg00416-amg00416c6-samsung-in-3260.playouts.now.amagi.tv/playlist/amg00416-travelxp-sangeetbhojpuri-samsungin/playlist.m3u8
 
 #EXTINF:-1 tvg-id="INBD4700017SL" tvg-name="Sangeet Bhojpuri" tvg-logo="https://dtil.tmsimg.com/assets/s143757_ld_h15_aa.png?lock=720x540" tvg-language="Bhojpuri" group-title="Music",SANGEET BHOJPURI
 http://cdn.pishow.tv/ott/live/1293/master.m3u8
 
 #EXTINF:-1 tvg-id="INBD4700016S7" tvg-name="Sangeet Marathi" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sangeet_Marathi.png" tvg-language="Marathi" group-title="Music",SANGEET MARATHI HD
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
-http://m3u-iptv.github.io/iptv/streams/SangeetMarathi.m3u8
+https://amg00416-amg00416c6-samsung-in-3260.playouts.now.amagi.tv/playlist/amg00416-travelxp-sangeetmarathi-samsungin/playlist.m3u8
 
 #EXTINF:-1 tvg-id="INBD4700016S7" tvg-name="Sangeet Marathi" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sangeet_Marathi.png" tvg-language="Marathi" group-title="Music",SANGEET MARATHI
 http://cdn.pishow.tv/ott/live/1229/master.m3u8
@@ -1479,7 +1479,7 @@ https://live.yettelevision.com:5443/LiveApp/streams/yettv2.m3u8
 https://live.yettelevision.com:5443/LiveApp/streams/yettv.m3u8
 
 #EXTINF:-1 tvg-id="YRFMusic.in@SD" tvg-logo="https://m3u-iptv.github.io/iptv/images/YRF_Music.png" tvg-language="Hindi" group-title="Music",YRF Music
-http://m3u-iptv.github.io/iptv/streams/YRFMusic1.m3u8
+https://vidaa.kableone.com/hls/live/2111218/YrfMusic/master.m3u8
 
 #EXTINF:-1 tvg-id="YYZ.in" tvg-logo="https://m3u-iptv.github.io/iptv/images/YYZ_TV.png" tvg-language="Hindi" group-title="Movies",YYZ TV
 https://yyz-tv.keralive.workers.dev/live/sursangam/index.m3u8
