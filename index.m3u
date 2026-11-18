@@ -1,4 +1,4 @@
-#EXTM3U x-tvg-url="https://m3u-iptv.github.io/iptv/epg.xml.gz" catchup-type="shift"
+#EXTM3U x-tvg-url="https://raw.githubusercontent.com/m3u-iptv/live/main/epg.xml.gz" catchup-type="shift"
 
 #EXTINF:-1 tvg-id="ts267" tvg-name="And Pictures HD" tvg-logo="https://m3u-iptv.github.io/iptv/images/TataPlay.png" tvg-language="Hindi" group-title="Tata Play",TATA PLAY
 https://m3u-iptv.github.io/iptv/streams/TataPlay.m3u8
@@ -576,7 +576,7 @@ http://cdn.pishow.tv/live/1111/master.m3u8
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://amigofx.com:1936/gosansaar/gosansaar/playlist.m3u8
 
-#EXTINF:-1 tvg-id="ts823" tvg-name="Goldmines.in" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Goldmines.png" tvg-language="Hindi" group-title="Movies",Goldmines
+#EXTINF:-1 tvg-id="Goldmines.Movie.Today.IN25000020M" tvg-name="Goldmines.in" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Goldmines.png" tvg-language="Hindi" group-title="Movies",Goldmines
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://mumt04.tangotv.in/m18aqlK4GOLDMINES/index.m3u8
 
@@ -587,10 +587,10 @@ https://mumt03.tangotv.in/Dsly5z3HGOLDMINES2/index.m3u8
 #EXTINF:-1 tvg-id="GoldminesAction.in@SD" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Goldmines_Action.png" tvg-language="Hindi" group-title="Movies",Goldmines Action
 https://mumt03.tangotv.in/Dsly5z3HGOLDMINESACTION/index.m3u8
 
-#EXTINF:-1 tvg-id="GoldminesBollywood.in" tvg-name="Goldmines Bollywood.in" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Goldmines_Bollywood.png" tvg-language="Hindi" group-title="Movies",Goldmines Bollywood
+#EXTINF:-1 tvg-id="Goldmines.Bollywood.Today.in2" tvg-name="Goldmines Bollywood.in" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Goldmines_Bollywood.png" tvg-language="Hindi" group-title="Movies",Goldmines Bollywood
 https://mumt03.tangotv.in/Dsly5z3HGOLDMINESBOLLYWOOD/index.m3u8
 
-#EXTINF:-1 tvg-id="GoldminesMovies.in" tvg-name="Goldmines Movies.in" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Goldmines_Movies.png" tvg-language="Hindi" group-title="Movies",Goldmines Movies
+#EXTINF:-1 tvg-id="Goldmines.Movies.Today.For.Dd.Free.Dish.Users.in2" tvg-name="Goldmines Movies.in" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Goldmines_Movies.png" tvg-language="Hindi" group-title="Movies",Goldmines Movies
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://streams.tangotv.in/GOLDMINEMOVIES/ORIGIN/index.m3u8
 
