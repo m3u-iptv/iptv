@@ -106,7 +106,7 @@ function startOnlineCounter(name){
 window.addEventListener('beforeunload',()=>{ try{ navigator.sendBeacon('https://abacus.jasoncameron.dev/decrement/m3u-iptv-online/'+currentChannelSafeName); }catch(e){} },{passive:true});
 
 // ✅ EPG ALL CHANNELS - ANDAR HI CHALEGA, BAHAR KUCH NAHI DIKHAYEGA
-let EPG_URLS = ['https://epgshare01.online/epgshare01/epg_ripper_IN1.xml.gz','https://epgshare01.online/epgshare01/epg_ripper_IN2.xml.gz','https://epgshare01.online/epgshare01/epg_ripper_IN4.xml.gz'];
+let EPG_URLS = ['https://epgshare01.online/epgshare01/epg_ripper_IN4.xml.gz'];
 let epgOn=true, epgCache={}, epgNameToId={}, epgNormToId={}, epgAllIds=[], epgFetched=false, epgFetching=false, epgLastChannel='', epgFullText=null;
 function toggleEPG(){
   epgOn=!epgOn; let b=document.getElementById('epgToggleBtn');
