@@ -1,4 +1,4 @@
-#EXTM3U x-tvg-url="https://raw.githubusercontent.com/m3u-iptv/live/main/epg.xml.gz" catchup-type="shift"
+#EXTM3U x-tvg-url="https://raw.githubusercontent.com/m3u-iptv/iptv/main/epg.xml.gz" catchup-type="shift"
 
 #EXTINF:-1 tvg-id="ts267" tvg-name="And Pictures HD" tvg-logo="https://m3u-iptv.github.io/iptv/images/TataPlay.png" tvg-language="Hindi" group-title="Tata Play",TATA PLAY
 https://m3u-iptv.github.io/iptv/streams/TataPlay.m3u8
