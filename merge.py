@@ -6,7 +6,7 @@ URLS = [
   "https://raw.githubusercontent.com/m3u-iptv/live/main/epg.xml.gz",
   "https://raw.githubusercontent.com/m3u-iptv/CA2-epg/main/CA_epg.xml",
   "https://raw.githubusercontent.com/m3u-iptv/HK1-epg/main/HK_epg.xml",
-  "https://raw.githubusercontent.com/m3u-iptv/MY1-epg/main/MY_epg.xml",
+  "https://raw.githubusercontent.com/m3u-iptv/IN4-epg/main/IN_epg.xml",
   "https://raw.githubusercontent.com/m3u-iptv/SG1-epg/main/SG_epg.xml",
   "https://raw.githubusercontent.com/m3u-iptv/UK1-epg/main/UK_epg.xml",
   "https://raw.githubusercontent.com/m3u-iptv/US2-epg/main/US_epg.xml",
