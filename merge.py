@@ -2,6 +2,7 @@ import gzip, requests, copy, re, xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 
 URLS = [
+  "https://raw.githubusercontent.com/m3u-iptv/live/main/epg.xml.gz",
   "https://epgshare01.online/epgshare01/epg_ripper_HK1.xml.gz",
   "https://epgshare01.online/epgshare01/epg_ripper_IN1.xml.gz",
   "https://epgshare01.online/epgshare01/epg_ripper_IN2.xml.gz",
