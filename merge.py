@@ -3,8 +3,7 @@ from datetime import datetime, timedelta
 
 URLS = [
   "https://i.mjh.nz/SamsungTVPlus/all.xml.gz",
-  "https://raw.githubusercontent.com/m3u-iptv/live/main/epg.xml.gz",
-  "https://raw.githubusercontent.com/m3u-iptv/CA2-epg/main/CA_epg.xml",
+  "https://raw.githubusercontent.com/m3u-iptv/epg-schedule/main/epg.xml.gz",
   "https://raw.githubusercontent.com/m3u-iptv/HK1-epg/main/HK_epg.xml",
   "https://raw.githubusercontent.com/m3u-iptv/IN4-epg/main/IN_epg.xml",
   "https://raw.githubusercontent.com/m3u-iptv/SG1-epg/main/SG_epg.xml",
