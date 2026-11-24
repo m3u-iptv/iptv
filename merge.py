@@ -2,7 +2,7 @@ import gzip, requests, copy, re, xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 
 URLS = [
-  "https://i.mjh.nz/SamsungTVPlus/all.xml.gz",
+  "https://i.mjh.nz/SamsungTVPlus/in.xml.gz",
   "https://raw.githubusercontent.com/m3u-iptv/epg-schedule/main/epg.xml.gz",
   "https://raw.githubusercontent.com/m3u-iptv/HK1-epg/main/HK_epg.xml",
   "https://raw.githubusercontent.com/m3u-iptv/IN4-epg/main/IN_epg.xml",
