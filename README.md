@@ -1,3 +1,10 @@
+# EPG URL (Electric Program Guide) 
+
+```
+https://m3u-iptv.github.io/iptv/epg.xml.gz
+```
+
+
 ### 📺 LIVE TV ULTRA PLAYER
 
 **India Ka Sabse Fast & Simple LIVE TV Player - No Key, No Login, Sirf Link Se Chalega!**
