@@ -1208,7 +1208,7 @@ http://cdn.pishow.tv/live/1111/master.m3u8
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://amigofx.com:1936/gosansaar/gosansaar/playlist.m3u8
 
-#EXTINF:-1 tvg-id="Goldmines.Movie.Today.IN25000020M" tvg-name="Goldmines.in" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Goldmines.png" tvg-language="Hindi" group-title="Movies",Goldmines
+#EXTINF:-1 tvg-id="Goldmines.Movie.Today.in2" tvg-name="Goldmines.Movie.Today.in2" tvg-logo="https://raw.githubusercontent.com/m3u-iptv/live/refs/heads/main/Images/Goldmines.png" tvg-language="Hindi" group-title="Movies",Goldmines
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://mumt04.tangotv.in/m18aqlK4GOLDMINES/index.m3u8
 
@@ -1611,15 +1611,15 @@ http://cdn.pishow.tv/live/351/master.m3u8
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 http://cdn.pishow.tv/live/1742/master.m3u8
 
-#EXTINF:-1 tvg-id="SONY.MAX.2.in" tvg-name="SONY MAX 2" tvg-logo="https://m3u-iptv.github.io/iptv/images/Sony_Max_2.png" tvg-language="Hindi" group-title="Movies",SONY MAX 2
+#EXTINF:-1 tvg-id="Sony.MAX2.in" tvg-name="SONY MAX 2" tvg-logo="https://m3u-iptv.github.io/iptv/images/Sony_Max_2.png" tvg-language="Hindi" group-title="Movies",SONY MAX 2
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 http://cdn.pishow.tv/live/350/master.m3u8
 
-#EXTINF:-1 tvg-id="SONY.MAX.HD.in" tvg-name="SONY MAX HD" tvg-logo="https://m3u-iptv.github.io/iptv/images/Sony_Max_HD.png" tvg-language="Hindi" group-title="Movies",SONY MAX HD
+#EXTINF:-1 tvg-id="MAX.HD.in" tvg-name="SONY MAX HD" tvg-logo="https://m3u-iptv.github.io/iptv/images/Sony_Max_HD.png" tvg-language="Hindi" group-title="Movies",SONY MAX HD
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 http://cdn.pishow.tv/live/334/master.m3u8
 
-#EXTINF:-1 tvg-id="SONY.MAX.in" tvg-name="SONY MAX" tvg-logo="https://m3u-iptv.github.io/iptv/images/Sony_Max.png" tvg-language="Hindi" group-title="Movies",SONY MAX
+#EXTINF:-1 tvg-id="Sony.Max.SD.in" tvg-name="SONY MAX" tvg-logo="https://m3u-iptv.github.io/iptv/images/Sony_Max.png" tvg-language="Hindi" group-title="Movies",SONY MAX
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 http://cdn.pishow.tv/live/291/master.m3u8
 
@@ -2199,13 +2199,13 @@ https://server.thelegitpro.in/tlchd/index.m3u8
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://server.thelegitpro.in/tlchd/index.m3u8
 
-#EXTINF:-1 tvg-id="TNP.News.in" tvg-logo="https://dtil.tmsimg.com/assets/s158792_ld_h15_aa.png?lock=360x270" tvg-language="Hindi" group-title="News",TNP NEWS
-#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
-https://server.thelegitpro.in/tnpnews/tnpnews/index.m3u8
-
 #EXTINF:-1 tvg-id="T.NEWS.in" tvg-name="T NEWS" tvg-logo="https://dtil.tmsimg.com/assets/s143919_ld_h15_aa.png?lock=720x540" tvg-language="Telugu" group-title="News",T NEWS
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://cdn.pishow.tv/ott/live/385/master.m3u8
+
+#EXTINF:-1 tvg-id="TNP.News.in" tvg-name="TNP News" tvg-logo="https://dtil.tmsimg.com/assets/s158792_ld_h15_aa.png?lock=360x270" tvg-language="Hindi" group-title="News",TNP NEWS
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://server.thelegitpro.in/tnpnews/tnpnews/index.m3u8
 
 #EXTINF:-1 tvg-id="TotalBhakti.in@SD" tvg-logo="https://bhaktiappproduction.s3.ap-south-1.amazonaws.com/videos/video/5802371total_bhakti_hd.png" tvg-language="Hindi" group-title="Religious",TOTAL BHAKTI
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
@@ -2263,7 +2263,11 @@ https://d9bunlxvfduy3.cloudfront.net/v1/master/071c0467fcd02420cdf0d8a1ca3524b96
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://live.wrencdn.in/wrencdn/hls/tv13_web/index.m3u8
 
-#EXTINF:-1 tvg-id="ts1009" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/TV27_News.png" tvg-language="Hindi" group-title="News",TV27 NEWS
+#EXTINF:-1 tvg-id="TV24.in" tvg-name="TV 24" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/TV24.png" tvg-language="Others" group-title="News",TV24 News
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+http://51.75.127.199:3141/tv24/index.m3u8
+
+#EXTINF:-1 tvg-id="TV27.News.in" tvg-name="TV27 News" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/TV27_News.png" tvg-language="Hindi" group-title="News",TV27 NEWS
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://mumt04.tangotv.in/m18aqlK4TV27/index.m3u8
 
@@ -2271,19 +2275,43 @@ https://mumt04.tangotv.in/m18aqlK4TV27/index.m3u8
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://stream.tv30bharat.com/hls/shree/bhattji.m3u8
 
-#EXTINF:-1 tvg-id="ts1338" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/TV45.png" tvg-language="Hindi" group-title="News",TV45 NEWS
+#EXTINF:-1 tvg-id="TV45.in" tvg-name="TV 45" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/TV45.png" tvg-language="Hindi" group-title="News",TV45 NEWS
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://server.livelegitpro.in/bnews24/bnews24/video.m3u8
+
+#EXTINF:-1 tvg-id="TV.100.in" tvg-name="TV 100" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/TV_100.png" tvg-language="Hindi" group-title="News",TV100 NEWS
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+http://51.75.127.199:3141/tv100/index.m3u8
+
+#EXTINF:-1 tvg-id="TVBRICSEnglish.in@SD" tvg-logo="https://i.imgur.com/8rKNuS6.png" tvg-language="English" group-title="News",TV BRICS
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://engbrics.mediacdn.ru/cdn/brics/english/playlist.m3u8
+
+#EXTINF:-1 tvg-id="TVPunjab.ca@SD" tvg-name="TV Punjab" tvg-logo="https://en.tvpunjab.com/storage/2022/03/logo-2022.png" tvg-language="Punjabi" group-title="Religious",TV PUNJAB
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://932y483pdjv8-hls-live.5centscdn.com/stream/deb10bae362f810630ec3abedcae5894.sdp/playlist.m3u8
+
+#EXTINF:-1 tvg-id="U.Bangla.in" tvg-name="U Bangla" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/U_Bangla.png" tvg-language="Bengali" group-title="Entertainment",U BANGLA
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://stream.ottlive.co.in/ubangla/index.m3u8
+
+#EXTINF:-1 tvg-id="Unique.Tv.in" tvg-name="Unique TV" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Unique_Tv.png" tvg-language="Hindi" group-title="Entertainment",UNIQUE TV
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://mumt05.tangotv.in/87NeALx2UNIQUETV/index.m3u8
 
 #EXTINF:-1 tvg-id="V6.NEWS.in" tvg-name="V6 NEWS" tvg-logo="https://dtil.tmsimg.com/assets/s144047_ld_h15_aa.png?lock=720x540" tvg-language="Telugu" group-title="News",V6 NEWS
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://yuppmedtaorire.akamaized.net/v1/master/a0d007312bfd99c47f76b77ae26b1ccdaae76cb1/v6news_nim_https/140622/v6news/playlist.m3u8
 
+#EXTINF:-1 tvg-id="Valam.TV.in" tvg-name="Valam TV" tvg-logo="https://papaji.freetvindia.com/media/channels/Valam_Dayro.png" tvg-language="Gujarati" group-title="Religious",VALAM TV DAYRO
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://mumt03.tangotv.in/Dsly5z3HVALAMDAIRO/index.m3u8
+
 #EXTINF:-1 tvg-id="VASANTH.TV.in" tvg-name="VASANTH TV" tvg-logo="https://dtil.tmsimg.com/assets/s144068_ld_h15_aa.png?lock=720x540" tvg-language="Tamil" group-title="Entertainment",VASANTH TV
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://mumt04.tangotv.in/m18aqlK4VASANTHTV/index.m3u8
 
-#EXTINF:-1 tvg-id="Vedic" tvg-logo="https://dtil.tmsimg.com/assets/s144069_ld_h15_aa.png?lock=720x540" tvg-language="Hindi" group-title="Religious",VEDIC
+#EXTINF:-1 tvg-id="Vedic.TV.in" tvg-language="Vedic TV" tvg-logo="https://dtil.tmsimg.com/assets/s144069_ld_h15_aa.png?lock=720x540" tvg-language="Hindi" group-title="Religious",VEDIC
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://mumt05.tangotv.in/87NeALx2VEDIC/index.m3u8
 
@@ -2291,23 +2319,49 @@ https://mumt05.tangotv.in/87NeALx2VEDIC/index.m3u8
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://mumt05.tangotv.in/87NeALx2VALICHAMPLUS/index.m3u8
 
+#EXTINF:-1 tvg-id="Vendhar.TV.in" tvg-name="Vendhar TV" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Vendhar_TV.png" tvg-language="Tamil" group-title="Entertainment",VENDHAR TV
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://mumt04.tangotv.in/m18aqlK4VENDHARTV/index.m3u8
+
+#EXTINF:-1 tvg-id="VIP.News.in" tvg-name="VIP News" tvg-logo="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_VIP_NEWS/images/LOGO_HD/image.png" tvg-language="Hindi" group-title="News",VIP NEWS
+https://live.vipnews24x7.co.in/vipnews24x7/d0dbe915091d400bd8ee7f27f0791303.sdp/playlist.m3u8
+
 #EXTINF:-1 tvg-id="VISSA.TV.in" tvg-name="VISSA TV" tvg-logo="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_VISSA_TV/images/LOGO_HD/image.png" tvg-language="Telugu" group-title="Entertainment",VISSA TV
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://mumt07.tangotv.in/zHjX9OFlVISSATV/index.m3u8
+
+#EXTINF:-1 tvg-id="Vistaar.News.in" tvg-name="Vistaar News" tvg-logo="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_VISTAAR_NEWS/images/LOGO_HD/image.png" tvg-language="Others" group-title="News",Vistaar News
+https://stream.ottlive.co.in/vistaartv/index.m3u8
+
+#EXTINF:-1 tvg-id="VISVAS.in" tvg-name="VISVAS" tvg-logo="" tvg-language="Others" group-title="News",VISVAS
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+http://51.75.127.199:3141/vnmtv/index.m3u8
+
+#EXTINF:-1 tvg-id="VNM.TV.in" tvg-name="VNM TV" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/VNM_News.png" tvg-language="Others" group-title="News",VNM TV
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+http://51.75.127.199:3141/vnmtv/index.m3u8
+
+#EXTINF:-1 tvg-id="Voice.TV.Urdu.in" tvg-name="Voice TV Urdu" tvg-logo="" tvg-language="Urdu" group-title="News",Voice TV Urdu
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://channel.com/hls/vrchannel.m3u8
+
+#EXTINF:-1 tvg-id="VR.Live.in" tvg-name="VR Live" tvg-logo="https://m3u-iptv.github.io/iptv/images/VR_Live.png" tvg-language="Gujarati" group-title="News",VR LIVE
+#EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
+https://channel.vrlivegujarat.com/hls/vrchannel.m3u8
 
 #EXTINF:-1 tvg-id="VTV.NEWS.in" tvg-name="VTV NEWS" tvg-logo="https://m3u-iptv.github.io/iptv/images/VTV_News.png" tvg-language="Gujarati" group-title="News",VTV News
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://d1msejlow1t3l4.cloudfront.net/fta/vtvgujarati/playlist.m3u8
 
-#EXTINF:-1 tvg-id="Vyas.in" tvg-logo="https://m3u-iptv.github.io/iptv/images/DD_Vyas.png" tvg-language="English" group-title="Education",Vyas Channel
+#EXTINF:-1 tvg-id="Vyasa.TV.in" tvg-name="Vyasa TV" tvg-logo="https://m3u-iptv.github.io/iptv/images/DD_Vyas.png" tvg-language="English" group-title="Education",Vyas Channel
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://playhls.media.nic.in/hls/live/vyas/vyas.m3u8
 
-#EXTINF:-1 tvg-id="WahPunjabi.in@SD" tvg-logo="https://m3u-iptv.github.io/iptv/images/Wah_Punjabi.png" tvg-language="Punjabi" group-title="Music",Wah Punjabi
+#EXTINF:-1 tvg-id="Wah.Punjabi.in" tvg-name="Wah Punjabi" tvg-logo="https://m3u-iptv.github.io/iptv/images/Wah_Punjabi.png" tvg-language="Punjabi" group-title="Music",Wah Punjabi
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://yuppnimrestreammum.akamaized.net/181224/smil:wahpunjabi.smil/playlist.m3u8?hdnts=st=1735898689~exp=1835898688~acl=*~hmac=f5fe24724fe05481e3841f9eb5ab8efdee0a3dd83645ae9dcf45703f525bab7b
 
-#EXTINF:-1 tvg-id="553" tvg-name="KairaliWe.in" tvg-logo="https://m3u-iptv.github.io/iptv/images/Wah_TV.png" group-title="Religious",We TV
+#EXTINF:-1 tvg-id="WE.TV.in" tvg-name="WE TV" tvg-logo="https://m3u-iptv.github.io/iptv/images/Wah_TV.png" tvg-language="Others" group-title="Religious",We TV
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://catchup.yuppcdn.net/amazonv2/36/preview/wetv/master/chunklist.m3u8
 
@@ -2315,7 +2369,7 @@ https://catchup.yuppcdn.net/amazonv2/36/preview/wetv/master/chunklist.m3u8
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://jukin-weatherspy-2-in.samsung.wurl.tv/playlist.m3u8
 
-#EXTINF:-1 tvg-id="647f8d22a2fc3fadb4721685-60d4edddb2fdec002c141135" tvg-name="WildEarth" tvg-logo="https://m3u-iptv.github.io/iptv/images/Wild_Earth.png" tvg-language="English" group-title="Infotainment",Wild Earth
+#EXTINF:-1 tvg-id="Wild.Earth.in" tvg-name="Wild Earth" tvg-logo="https://m3u-iptv.github.io/iptv/images/Wild_Earth.png" tvg-language="English" group-title="Infotainment",Wild Earth
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://jmp2.uk/plex-647f8d22a2fc3fadb4721685-60d4edddb2fdec002c141135.m3u8
 
@@ -2323,7 +2377,7 @@ https://jmp2.uk/plex-647f8d22a2fc3fadb4721685-60d4edddb2fdec002c141135.m3u8
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://sis-global.prod.samsungtv.plus/v1/tvpprd/sc-merbcw141f2ka.m3u8
 
-#EXTINF:-1 tvg-id="WinTV.in@SD" tvg-logo="https://m3u-iptv.github.io/iptv/images/Win_TV.png" tvg-language="Tamil" group-title="News",Win TV
+#EXTINF:-1 tvg-id="Win.TV.in" tvg-name="Win TV" tvg-logo="https://m3u-iptv.github.io/iptv/images/Win_TV.png" tvg-language="Tamil" group-title="News",Win TV
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://mumt06.tangotv.in/qYyB8fXVWINTV/index.m3u8
 
@@ -2335,7 +2389,7 @@ https://vg-zeefta1.akamaized.net/main.m3u8
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://vg-zeefta1.akamaized.net/vglive-sk-726180/main.m3u8
 
-#EXTINF:-1 tvg-id="WorldPunjabiTV.in@SD" tvg-name="World Punjabi TV" tvg-logo="https://m3u-iptv.github.io/iptv/images/World_Punjabi_HD.png" tvg-language="Punjabi" group-title="News",World Punjabi HD
+#EXTINF:-1 tvg-id="WPN.World.Punjabi.News.in" tvg-name="WPN World Punjabi News" tvg-logo="https://m3u-iptv.github.io/iptv/images/World_Punjabi_HD.png" tvg-language="Punjabi" group-title="News",World Punjabi HD
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://live1.ottlive.co.in/worldpunjabitv/worldpunjabitv/index.m3u8
 
@@ -2363,7 +2417,7 @@ https://live.yettelevision.com:5443/LiveApp/streams/yettv2.m3u8
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://live.yettelevision.com:5443/LiveApp/streams/yettv.m3u8
 
-#EXTINF:-1 tvg-id="YRFMusic.in@SD" tvg-logo="https://m3u-iptv.github.io/iptv/images/YRF_Music.png" tvg-language="Hindi" group-title="Music",YRF Music
+#EXTINF:-1 tvg-id="YRF.Music.in" tvg-name="YRF.Music.in" tvg-logo="https://m3u-iptv.github.io/iptv/images/YRF_Music.png" tvg-language="Hindi" group-title="Music",YRF Music
 https://vidaa.kableone.com/hls/live/2111218/YrfMusic/master.m3u8
 
 #EXTINF:-1 tvg-id="YYZ.in" http-user-agent="https://bhoomtv.org/live/" tvg-logo="https://m3u-iptv.github.io/iptv/images/YYZ_TV.png" tvg-language="Hindi" group-title="Movies",YYZ TV
@@ -2505,7 +2559,7 @@ https://yuppnimresmum.akamaized.net/28072023/smil:zeekannadahd.smil/playlist.m3u
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 http://cdn.pishow.tv/live/1551/master.m3u8
 
-#EXTINF:-1 tvg-id="ts1287" tvg-logo="https://m3u-iptv.github.io/iptv/images/Zee_Kannada_News.png" tvg-language="Kannada" group-title="News",Zee Kannada News
+#EXTINF:-1 tvg-id="ZEE.KANNADA.NEWS.in" tvg-name="ZEE KANNADA NEWS" tvg-logo="https://m3u-iptv.github.io/iptv/images/Zee_Kannada_News.png" tvg-language="Kannada" group-title="News",Zee Kannada News
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 https://m3u-iptv.github.io/iptv/streams/ZeeKannadaNews.m3u8
 
@@ -2642,7 +2696,7 @@ https://m3u-iptv.github.io/iptv/streams/ZeeUttarPradeshUttarakhand.m3u8
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 http://cdn.pishow.tv/live/1567/master.m3u8
 
-#EXTINF:-1 tvg-id="ts382" tvg-name="Zee Zest HD" tvg-logo="https://m3u-iptv.github.io/iptv/images/Zee_Zest_HD.png" tvg-language="Hindi" group-title="LifeStyle",Zee Zest HD
+#EXTINF:-1 tvg-id="ZEE.ZEST.in" tvg-name="ZEE ZEST HD" tvg-logo="https://m3u-iptv.github.io/iptv/images/Zee_Zest_HD.png" tvg-language="Hindi" group-title="LifeStyle",Zee Zest HD
 #EXTVLCOPT:http-user-agent=Dalvik/2.1.0 (Linux; U; Android 10; SM-G975F Build/QP1A.190711.020)
 http://cdn.pishow.tv/live/1569/master.m3u8
 
