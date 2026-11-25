@@ -5,7 +5,7 @@ URLS = [
   "https://i.mjh.nz/SamsungTVPlus/in.xml.gz",
   "https://raw.githubusercontent.com/m3u-iptv/epg-schedule/main/epg.xml.gz",
   "https://raw.githubusercontent.com/m3u-iptv/HK1-epg/main/HK_epg.xml",
-  "https://raw.githubusercontent.com/m3u-iptv/IN4-epg/main/IN_epg.xml",
+  "https://raw.githubusercontent.com/m3u-iptv/epgshere01-epg-india/main/epg.xml.gz",
   "https://raw.githubusercontent.com/m3u-iptv/UK1-epg/main/UK_epg.xml",
   "https://raw.githubusercontent.com/m3u-iptv/US2-epg/main/US_epg.xml",
 ]
