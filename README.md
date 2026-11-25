@@ -15,6 +15,9 @@ https://m3u-iptv.github.io/iptv/index.m3u
 
 **India Ka Sabse Fast & Simple LIVE TV Player - No Key, No Login, Sirf Link Se Chalega!**
 
+🔴 **LIVE TV ULTRA PLAYER GUIDE:** 
+https://m3u-iptv.github.io/iptv/ultra.html
+
 🔴 **LIVE TV ULTRA PLAYER:** https://m3u-iptv.github.io/iptv/index.html
 
 ---
